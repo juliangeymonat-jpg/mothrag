@@ -8,7 +8,7 @@
 
 # MOTHRAG
 
-> **Training-free multi-hop question answering at research-SOTA parity — on commodity LLM APIs alone.**
+> **Deterministic, agentic-style multi-hop question answering at research-SOTA parity — on commodity LLM APIs alone. No GPU, no fine-tuning, a proof tree per answer.**
 
 **Author:** Julian Geymonat · **Research supported by:** ItalySoft srl · **License:** Apache-2.0 · **Paper:** arXiv link pending · [Zenodo preprint DOI: 10.5281/zenodo.20668567](https://doi.org/10.5281/zenodo.20668567) · **Site:** [mothrag.com](https://mothrag.com)
 
@@ -28,6 +28,12 @@ F1, competitor numbers as published in the cited sources (same reader class). MO
 **Measured cost:** $0.032/query (reader + retrieval-judge, measured over 3,000 queries). A documented **economy tier** (one-flag retrieval-judge swap) runs at ≈$0.018/query (−44%) at statistical parity on HotpotQA and 2WikiMultiHopQA, with a measured trade-off only on MuSiQue (−2.12). All SOTA-parity claims attach to the full configuration.
 
 Answers are **proof-tree-structured**: each output carries inspectable reasoning steps over the assembled evidence, with a γ-cap fallback when the grounding check cannot be satisfied within budget.
+
+## Why deterministic?
+
+Naive single-shot RAG is fading; the field is moving to *agentic* retrieval — planning, multi-hop iteration, reflection. MOTHRAG takes those mechanisms — query **decomposition**, **grounding-driven iteration**, **multi-hop** evidence chaining — but runs them through **deterministic** orchestration: same inputs → same answer, with an inspectable audit trail, instead of a flaky free-form agent loop.
+
+We tested the alternative: letting an LLM route the pipeline. Every model we tried (Llama-3.3-70B, Claude Sonnet, Gemini Flash, Claude Haiku) did *worse* than the deterministic router. Determinism won on **accuracy and reproducibility** — which is exactly what you want when you put multi-hop retrieval into production or evaluate it cleanly.
 
 ## Install
 
