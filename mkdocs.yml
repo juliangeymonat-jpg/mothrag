@@ -1,0 +1,72 @@
+site_name: MothRAG
+site_description: "Adaptive multi-arm subset routing for multi-hop retrieval-augmented generation."
+site_author: Julian Geymonat
+site_url: https://juliangeymonat-jpg.github.io/mothrag/
+repo_url: https://github.com/juliangeymonat-jpg/mothrag
+repo_name: juliangeymonat-jpg/mothrag
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Quickstart: getting-started/quickstart.md
+      - Installation: getting-started/installation.md
+      - Concepts: getting-started/concepts.md
+  - User Guide:
+      - High-level API: guide/api.md
+      - Document loaders: guide/loaders.md
+      - Production deployment: guide/production.md
+      - Hybrid graph retrieval: guide/hybrid-graph-retrieval.md
+      - Multimodal infobox retrieval: guide/multimodal-infobox-retrieval.md
+      - Retry on abstain: guide/retry-on-abstain.md
+      - Vertex AI setup: guide/vertex-setup.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+extra:
+  version:
+    provider: mike

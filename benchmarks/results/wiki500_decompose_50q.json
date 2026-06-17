@@ -1,0 +1,1308 @@
+{
+  "summary": {
+    "n": 50,
+    "em": 0.58,
+    "f1": 0.7259962308872957,
+    "n_decomposed": 48,
+    "decompose_failures": 0,
+    "reader_model": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+    "top_k_chunks": 10,
+    "top_k_subq": 5,
+    "elapsed_s": 8202.146677494049,
+    "soft_em": 0.82,
+    "soft_em_delta": 0.24
+  },
+  "per_question": [
+    {
+      "qid": "5abe953b5542993f32c2a170",
+      "question": "what is one of the stars of  The Newcomers known for",
+      "gold": "superhero roles as the Marvel Comics",
+      "complexity": "simple",
+      "decomposed": false,
+      "sub_qs": [],
+      "sub_qa": [],
+      "pred": "superhero roles",
+      "em": 0.0,
+      "f1": 0.5714285714285715,
+      "n_llm_calls": 1,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ab69f9a554299710c8d1ef8",
+      "question": "The fictional private detective that appears in \"The Adventure of the Seven Clocks\" what written by whom?",
+      "gold": "Sir Arthur Conan Doyle",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What fictional private detective appears in 'The Adventure of the Seven Clocks'?",
+        "Who wrote 'The Adventure of the Seven Clocks'?"
+      ],
+      "sub_qa": [
+        [
+          "What fictional private detective appears in 'The Adventure of the Seven Clocks'?",
+          "Sherlock Holmes"
+        ],
+        [
+          "Who wrote 'The Adventure of the Seven Clocks'?",
+          "Adrian Conan Doyle"
+        ]
+      ],
+      "pred": "Sherlock Holmes Adrian Conan Doyle",
+      "em": 0.0,
+      "f1": 0.4444444444444445,
+      "n_llm_calls": 4,
+      "soft_em": 0.0
+    },
+    {
+      "qid": "5abc030e554299642a094bdc",
+      "question": "The Distribution of Industry act was passed by a man who was prime minister when? ",
+      "gold": "1945 to 1951",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Who passed the Distribution of Industry act?",
+        "When was that person prime minister?"
+      ],
+      "sub_qa": [
+        [
+          "Who passed the Distribution of Industry act?",
+          "Clement Attlee"
+        ],
+        [
+          "When was that person prime minister?",
+          "1945 to 1951"
+        ]
+      ],
+      "pred": "1945 to 1951",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ae6c2285542995703ce8b9a",
+      "question": "Sparking the Marian civil war, who helped the recently abdicated queen to escape her imprisonment?",
+      "gold": "the Queen's gaoler",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Who was the recently abdicated queen in the Marian civil war?",
+        "Who helped that queen escape her imprisonment?"
+      ],
+      "sub_qa": [
+        [
+          "Who was the recently abdicated queen in the Marian civil war?",
+          "Mary Queen of Scots"
+        ],
+        [
+          "Who helped that queen escape her imprisonment?",
+          "her gaoler's family"
+        ]
+      ],
+      "pred": "her gaoler's family",
+      "em": 0.0,
+      "f1": 0.0,
+      "n_llm_calls": 4,
+      "soft_em": 0.0
+    },
+    {
+      "qid": "5ab57fc4554299488d4d99c0",
+      "question": "In which county is the town in which Raymond Robertsen was born ?",
+      "gold": "Finnmark county,",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Where was Raymond Robertsen born?",
+        "In which county is that town located?"
+      ],
+      "sub_qa": [
+        [
+          "Where was Raymond Robertsen born?",
+          "Hammerfest"
+        ],
+        [
+          "In which county is that town located?",
+          "Finnmark"
+        ]
+      ],
+      "pred": "Finnmark",
+      "em": 0.0,
+      "f1": 0.6666666666666666,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ade9c9c5542997c77adee8c",
+      "question": "What screenplay was worked on by both Edward Carfagno and Miklos Rozsa?",
+      "gold": "Julius Caesar",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What screenplays did Edward Carfagno work on?",
+        "What screenplays did Miklos Rozsa work on?"
+      ],
+      "sub_qa": [
+        [
+          "What screenplays did Edward Carfagno work on?",
+          "Not in passages"
+        ],
+        [
+          "What screenplays did Miklos Rozsa work on?",
+          "Not in passages"
+        ]
+      ],
+      "pred": "Not in passages",
+      "em": 0.0,
+      "f1": 0.0,
+      "n_llm_calls": 4,
+      "soft_em": 0.0
+    },
+    {
+      "qid": "5a749af055429979e28829b7",
+      "question": "Which Walt Disney film was produced first, The Apple Dumpling Gang or Something Wicked This Way Comes?",
+      "gold": "The Apple Dumpling Gang",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "When was The Apple Dumpling Gang produced?",
+        "When was Something Wicked This Way Comes produced?"
+      ],
+      "sub_qa": [
+        [
+          "When was The Apple Dumpling Gang produced?",
+          "1975"
+        ],
+        [
+          "When was Something Wicked This Way Comes produced?",
+          "1983"
+        ]
+      ],
+      "pred": "The Apple Dumpling Gang",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ae1389655429901ffe4ae05",
+      "question": "Bethpage State Parkway begins with an interchange at which Long Island-based limited access highway?",
+      "gold": "Southern State Parkway",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What begins with an interchange at Bethpage State Parkway?",
+        "What Long Island-based limited access highway is that?"
+      ],
+      "sub_qa": [
+        [
+          "What begins with an interchange at Bethpage State Parkway?",
+          "Southern State Parkway"
+        ],
+        [
+          "What Long Island-based limited access highway is that?",
+          "Southern State Parkway"
+        ]
+      ],
+      "pred": "Southern State Parkway",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5adcd4325542994d58a2f6ed",
+      "question": "Are Colocasia and Coronilla both flowering plants?",
+      "gold": "yes",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Is Colocasia a flowering plant?",
+        "Is Coronilla a flowering plant?"
+      ],
+      "sub_qa": [
+        [
+          "Is Colocasia a flowering plant?",
+          "yes"
+        ],
+        [
+          "Is Coronilla a flowering plant?",
+          "yes"
+        ]
+      ],
+      "pred": "yes",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a85c3225542992a431d1b95",
+      "question": "The 2000 ICC KnockOut Trophy was the debut of a Jamaican cricketer who is a right-handed what?",
+      "gold": "middle order batsman",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Who made their debut at the 2000 ICC KnockOut Trophy from Jamaica?",
+        "What is the batting style of that Jamaican cricketer?"
+      ],
+      "sub_qa": [
+        [
+          "Who made their debut at the 2000 ICC KnockOut Trophy from Jamaica?",
+          "Marlon Samuels"
+        ],
+        [
+          "What is the batting style of that Jamaican cricketer?",
+          "right-handed"
+        ]
+      ],
+      "pred": "right-handed batsman",
+      "em": 0.0,
+      "f1": 0.4,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ab94bc2554299743d22eacf",
+      "question": "Bytham Castle is a castle in the civil parish of how many houses?",
+      "gold": "300",
+      "complexity": "aggregate",
+      "decomposed": true,
+      "sub_qs": [
+        "What civil parish is Bytham Castle in?",
+        "How many houses are in that civil parish?"
+      ],
+      "sub_qa": [
+        [
+          "What civil parish is Bytham Castle in?",
+          "Castle Bytham"
+        ],
+        [
+          "How many houses are in that civil parish?",
+          "300"
+        ]
+      ],
+      "pred": "Castle Bytham has 300 houses",
+      "em": 0.0,
+      "f1": 0.33333333333333337,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ae1f17e554299234fd04349",
+      "question": "Which is located in Cornwall, Southwell Minster or Truro Cathedral?",
+      "gold": "The Cathedral of the Blessed Virgin Mary, Truro",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Where is Southwell Minster located?",
+        "Where is Truro Cathedral located?"
+      ],
+      "sub_qa": [
+        [
+          "Where is Southwell Minster located?",
+          "Southwell, Nottinghamshire, England"
+        ],
+        [
+          "Where is Truro Cathedral located?",
+          "Truro, Cornwall"
+        ]
+      ],
+      "pred": "Truro Cathedral",
+      "em": 0.0,
+      "f1": 0.5,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ab3cecd5542992ade7c6eae",
+      "question": "How do the Peter Laufer books Forbidden Creatures and No Animals Were Harmed differ in their focus on animals?",
+      "gold": "his own opinions changed",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What is the focus of the Peter Laufer book Forbidden Creatures?",
+        "What is the focus of the Peter Laufer book No Animals Were Harmed?"
+      ],
+      "sub_qa": [
+        [
+          "What is the focus of the Peter Laufer book Forbidden Creatures?",
+          "the lives of those that either own exotic animals or have been captured for illegally smuggling them, with a strong focus on Travis, the chimpanzee who attacked Charla Nash in 2009"
+        ],
+        [
+          "What is the focus of the Peter Laufer book No Animals Were Harmed?",
+          "the line between using animals for entertainment purposes and abusing them"
+        ]
+      ],
+      "pred": "the lives of those that either own exotic animals or have been captured for illegally smuggling them, with a strong focus on Travis, the chimpanzee who attacked Charla Nash in 2009, and the line between using animals for entertainment purposes and abusing them",
+      "em": 0.0,
+      "f1": 0.04651162790697674,
+      "n_llm_calls": 4,
+      "soft_em": 0.0
+    },
+    {
+      "qid": "5a8835dc5542994846c1ce2b",
+      "question": "Who is a winner of the 2013 6 Hours of Silverstone a co-commentator for?",
+      "gold": "BBC Formula One",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Who won the 2013 6 Hours of Silverstone?",
+        "Who is that winner a co-commentator for?"
+      ],
+      "sub_qa": [
+        [
+          "Who won the 2013 6 Hours of Silverstone?",
+          "Allan McNish, Tom Kristensen, Lo\u00efc Duval"
+        ],
+        [
+          "Who is that winner a co-commentator for?",
+          "BBC Formula One"
+        ]
+      ],
+      "pred": "BBC Formula One",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a714dea5542994082a3e7a9",
+      "question": "Which 2009 animated film is from Japan, Summer Wars or The Secret of Kells?",
+      "gold": "Summer Wars",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Where is the animated film Summer Wars from?",
+        "Where is the animated film The Secret of Kells from?"
+      ],
+      "sub_qa": [
+        [
+          "Where is the animated film Summer Wars from?",
+          "Japan"
+        ],
+        [
+          "Where is the animated film The Secret of Kells from?",
+          "Ireland France Belgium"
+        ]
+      ],
+      "pred": "Summer Wars",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a8481945542997175ce1ed3",
+      "question": "Are Steve Perry and Leslie West both singers?",
+      "gold": "yes",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Is Steve Perry a singer?",
+        "Is Leslie West a singer?"
+      ],
+      "sub_qa": [
+        [
+          "Is Steve Perry a singer?",
+          "yes"
+        ],
+        [
+          "Is Leslie West a singer?",
+          "yes"
+        ]
+      ],
+      "pred": "yes",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a84574455429933447460e6",
+      "question": "In what year was the Golden State NBA player, who was part of the Cavaliers-Warriors rivalry, named NBA Finals Most Valuable Player?",
+      "gold": "2015",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Which Golden State NBA player was part of the Cavaliers-Warriors rivalry?",
+        "In what year was that player named NBA Finals Most Valuable Player?"
+      ],
+      "sub_qa": [
+        [
+          "Which Golden State NBA player was part of the Cavaliers-Warriors rivalry?",
+          "Andrew Bogut"
+        ],
+        [
+          "In what year was that player named NBA Finals Most Valuable Player?",
+          "2015"
+        ]
+      ],
+      "pred": "2015",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a72b2dc5542992359bc3173",
+      "question": "What is the name of the actor who wrote the memoir Without you: A memoir of love, loss, and the Musical Rent and also stared as Mark Cohen in the Broadway production of \"Rent\"?",
+      "gold": "Anthony Rapp",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Who wrote the memoir Without you: A memoir of love, loss, and the Musical Rent?",
+        "Who played Mark Cohen in the Broadway production of Rent?"
+      ],
+      "sub_qa": [
+        [
+          "Who wrote the memoir Without you: A memoir of love, loss, and the Musical Rent?",
+          "Anthony Rapp"
+        ],
+        [
+          "Who played Mark Cohen in the Broadway production of Rent?",
+          "Anthony Rapp"
+        ]
+      ],
+      "pred": "Anthony Rapp",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a7a3a945542996a35c17147",
+      "question": "One Raffles Place is one of the tallest skyscrapers in the city of Singapore and tallest in the wolrd outside North America until it was succeeded by a Building in city?",
+      "gold": "Hong Kong",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What city is One Raffles Place located in?",
+        "What building succeeded One Raffles Place as the tallest outside North America?",
+        "In what city is that building located?"
+      ],
+      "sub_qa": [
+        [
+          "What city is One Raffles Place located in?",
+          "Singapore"
+        ],
+        [
+          "What building succeeded One Raffles Place as the tallest outside North America?",
+          "Bank of China Tower"
+        ],
+        [
+          "In what city is that building located?",
+          "Hong Kong"
+        ]
+      ],
+      "pred": "Hong Kong",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 5,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ade86b255429939a52fe8e0",
+      "question": "Where is the ice hockey team based that Zdeno Ch\u00e1ra currently serving as captain of?",
+      "gold": "Boston, Massachusetts",
+      "complexity": "simple",
+      "decomposed": false,
+      "sub_qs": [],
+      "sub_qa": [],
+      "pred": "Boston",
+      "em": 0.0,
+      "f1": 0.6666666666666666,
+      "n_llm_calls": 1,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a8f5b6f554299458435d5e7",
+      "question": "Sand Mountainis part of the southern tip of a mountain chain in which part of North America ?",
+      "gold": "eastern North America",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What mountain chain is Sand Mountain part of?",
+        "Which part of North America is that mountain chain in?"
+      ],
+      "sub_qa": [
+        [
+          "What mountain chain is Sand Mountain part of?",
+          "Appalachian"
+        ],
+        [
+          "Which part of North America is that mountain chain in?",
+          "eastern"
+        ]
+      ],
+      "pred": "eastern North America",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ae40d405542996836b02c28",
+      "question": "At what intersection was the former home of the wooden roller coaster now located at Six Flags Great America in Gurnee, Illinois located?",
+      "gold": "North Avenue and First Avenue",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What is the name of the wooden roller coaster now located at Six Flags Great America in Gurnee, Illinois?",
+        "Where was the former home of that roller coaster located?"
+      ],
+      "sub_qa": [
+        [
+          "What is the name of the wooden roller coaster now located at Six Flags Great America in Gurnee, Illinois?",
+          "Goliath"
+        ],
+        [
+          "Where was the former home of that roller coaster located?",
+          "Six Flags Great America"
+        ]
+      ],
+      "pred": "Not in passages",
+      "em": 0.0,
+      "f1": 0.0,
+      "n_llm_calls": 4,
+      "soft_em": 0.0
+    },
+    {
+      "qid": "5a72334755429971e9dc934c",
+      "question": "\"Heartbreak Hurricane\" was recorded by which country artist, that also goes by the name Ricky Skaggs?",
+      "gold": "Rickie Lee Skaggs",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Who recorded Heartbreak Hurricane?",
+        "What is another name for that artist?"
+      ],
+      "sub_qa": [
+        [
+          "Who recorded Heartbreak Hurricane?",
+          "Ricky Skaggs"
+        ],
+        [
+          "What is another name for that artist?",
+          "Rickie Lee Skaggs"
+        ]
+      ],
+      "pred": "Ricky Skaggs",
+      "em": 0.0,
+      "f1": 0.4,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ab8829d55429934fafe6e08",
+      "question": "The View from the Bottom is the fifth studio album by an American rock band best known for what hit song?",
+      "gold": "My Own Worst Enemy",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What American rock band released The View from the Bottom?",
+        "What is that band best known for?"
+      ],
+      "sub_qa": [
+        [
+          "What American rock band released The View from the Bottom?",
+          "Lit"
+        ],
+        [
+          "What is that band best known for?",
+          "My Own Worst Enemy"
+        ]
+      ],
+      "pred": "My Own Worst Enemy",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a7b1c0a55429931da12c9c9",
+      "question": "This Experts Network sports analysts was inducted into the Pro Football Hall of Fame in 2000 and played in the NFL for how many seasons?",
+      "gold": "13 seasons",
+      "complexity": "aggregate",
+      "decomposed": true,
+      "sub_qs": [
+        "Who was inducted into the Pro Football Hall of Fame in 2000 and is a sports analyst for The Experts Network?",
+        "How many seasons did that person play in the NFL?"
+      ],
+      "sub_qa": [
+        [
+          "Who was inducted into the Pro Football Hall of Fame in 2000 and is a sports analyst for The Experts Network?",
+          "Howie Long"
+        ],
+        [
+          "How many seasons did that person play in the NFL?",
+          "13"
+        ]
+      ],
+      "pred": "13",
+      "em": 0.0,
+      "f1": 0.6666666666666666,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ae40b2b55429970de88d8b3",
+      "question": "In between  Polytechnic University of the Philippines and California Polytechnic State University which was founded as a vocational high school?",
+      "gold": "California Polytechnic State University",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Was Polytechnic University of the Philippines founded as a vocational high school?",
+        "Was California Polytechnic State University founded as a vocational high school?"
+      ],
+      "sub_qa": [
+        [
+          "Was Polytechnic University of the Philippines founded as a vocational high school?",
+          "no"
+        ],
+        [
+          "Was California Polytechnic State University founded as a vocational high school?",
+          "yes"
+        ]
+      ],
+      "pred": "California Polytechnic State University",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ab29c24554299449642c932",
+      "question": "Are Giuseppe Verdi and Ambroise Thomas both Opera composers ?",
+      "gold": "yes",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Was Giuseppe Verdi an Opera composer?",
+        "Was Ambroise Thomas an Opera composer?"
+      ],
+      "sub_qa": [
+        [
+          "Was Giuseppe Verdi an Opera composer?",
+          "yes"
+        ],
+        [
+          "Was Ambroise Thomas an Opera composer?",
+          "yes"
+        ]
+      ],
+      "pred": "yes",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ae26fad554299495565da6f",
+      "question": "Which historical drama filmed in the Winter Palace of the Russian State Hermitage Museum stars Sergey Dreyden?",
+      "gold": "Russian Ark",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Which historical dramas were filmed in the Winter Palace of the Russian State Hermitage Museum?",
+        "Which of those historical dramas stars Sergey Dreyden?"
+      ],
+      "sub_qa": [
+        [
+          "Which historical dramas were filmed in the Winter Palace of the Russian State Hermitage Museum?",
+          "Russian Ark"
+        ],
+        [
+          "Which of those historical dramas stars Sergey Dreyden?",
+          "Russian Ark"
+        ]
+      ],
+      "pred": "Russian Ark",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a7542425542996c70cfaecc",
+      "question": "Who was born first, Karen Joy Fowler or Bruce Chatwin?",
+      "gold": "Bruce Chatwin",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "When was Karen Joy Fowler born?",
+        "When was Bruce Chatwin born?"
+      ],
+      "sub_qa": [
+        [
+          "When was Karen Joy Fowler born?",
+          "February 7, 1950"
+        ],
+        [
+          "When was Bruce Chatwin born?",
+          "13 May 1940"
+        ]
+      ],
+      "pred": "Bruce Chatwin",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5adecc7755429975fa854f9d",
+      "question": "What WikiLeaks using whistleblower is notable for having a hacking organization with a user base of over 1,800,000?",
+      "gold": "Jeremy Hammond",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What WikiLeaks using whistleblower has a hacking organization?",
+        "What is the user base size of that hacking organization?"
+      ],
+      "sub_qa": [
+        [
+          "What WikiLeaks using whistleblower has a hacking organization?",
+          "Sigurdur Thordarson"
+        ],
+        [
+          "What is the user base size of that hacking organization?",
+          "Not in passages"
+        ]
+      ],
+      "pred": "Not in passages",
+      "em": 0.0,
+      "f1": 0.0,
+      "n_llm_calls": 4,
+      "soft_em": 0.0
+    },
+    {
+      "qid": "5abff9905542997d64295980",
+      "question": "Egremont Castle is located in what market town, civil parish, and two electoral wards in the Borough of Copeland in Cumbria, England?",
+      "gold": "Egremont",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "In what market town is Egremont Castle located?",
+        "In what civil parish is Egremont Castle located?",
+        "In what electoral wards is Egremont Castle located?"
+      ],
+      "sub_qa": [
+        [
+          "In what market town is Egremont Castle located?",
+          "Egremont"
+        ],
+        [
+          "In what civil parish is Egremont Castle located?",
+          "Egremont"
+        ],
+        [
+          "In what electoral wards is Egremont Castle located?",
+          "North and South"
+        ]
+      ],
+      "pred": "Egremont",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 5,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ab5f372554299488d4d9a60",
+      "question": "Which opera has more acts, La jolie fille de Perth or Mitridate, re di Ponto?",
+      "gold": "La jolie fille de Perth \"(The Fair Maid of Perth)\" is an opera in four acts",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "How many acts does La jolie fille de Perth have?",
+        "How many acts does Mitridate, re di Ponto have?"
+      ],
+      "sub_qa": [
+        [
+          "How many acts does La jolie fille de Perth have?",
+          "4"
+        ],
+        [
+          "How many acts does Mitridate, re di Ponto have?",
+          "3"
+        ]
+      ],
+      "pred": "La jolie fille de Perth",
+      "em": 0.0,
+      "f1": 0.5263157894736842,
+      "n_llm_calls": 4,
+      "soft_em": 0.0
+    },
+    {
+      "qid": "5a7558425542992db9473647",
+      "question": "What subsidiary of the largest airline of the Republic of China (Taiwan) has a main hub at Taichung Airport?",
+      "gold": "Mandarin Airlines",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What is the largest airline of the Republic of China (Taiwan)?",
+        "What subsidiary of that airline has a main hub at Taichung Airport?"
+      ],
+      "sub_qa": [
+        [
+          "What is the largest airline of the Republic of China (Taiwan)?",
+          "China Airlines"
+        ],
+        [
+          "What subsidiary of that airline has a main hub at Taichung Airport?",
+          "Mandarin Airlines"
+        ]
+      ],
+      "pred": "Mandarin Airlines",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a72f45a5542992359bc31e6",
+      "question": "What is the name of the former MGM Grand Garden Special Events Center where the Mayweather-Ortiz fight took place?",
+      "gold": "MGM Grand Garden Arena",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Where did the Mayweather-Ortiz fight take place?",
+        "What is the former name of that venue?"
+      ],
+      "sub_qa": [
+        [
+          "Where did the Mayweather-Ortiz fight take place?",
+          "MGM Grand Garden Arena"
+        ],
+        [
+          "What is the former name of that venue?",
+          "MGM Grand Garden Special Events Center"
+        ]
+      ],
+      "pred": "MGM Grand Garden Arena",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a83411655429966c78a6b5d",
+      "question": "Who created the NBC sitcom that Johnny Pemberton appears in as the character Bo Thompson?",
+      "gold": "Justin Spitzer",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What NBC sitcom features Johnny Pemberton as Bo Thompson?",
+        "Who created that NBC sitcom?"
+      ],
+      "sub_qa": [
+        [
+          "What NBC sitcom features Johnny Pemberton as Bo Thompson?",
+          "Superstore"
+        ],
+        [
+          "Who created that NBC sitcom?",
+          "Justin Spitzer"
+        ]
+      ],
+      "pred": "Justin Spitzer",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a77aa095542995d83181260",
+      "question": "Which aircraft engine powers a General Dynamics aircraft of which over 4500 have been built?",
+      "gold": "Pratt & Whitney F100",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What aircraft engine powers a General Dynamics aircraft?",
+        "Which General Dynamics aircraft has had over 4500 built?"
+      ],
+      "sub_qa": [
+        [
+          "What aircraft engine powers a General Dynamics aircraft?",
+          "F100"
+        ],
+        [
+          "Which General Dynamics aircraft has had over 4500 built?",
+          "F-16 Fighting Falcon"
+        ]
+      ],
+      "pred": "F100",
+      "em": 0.0,
+      "f1": 0.5,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ae680cc5542996d980e7ba5",
+      "question": "Which British racing driver has raced for 7 different teams and won the European Grand Prix in 1999?",
+      "gold": "Johnny Herbert",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Which British racing driver has raced for 7 different teams?",
+        "Which driver won the European Grand Prix in 1999?"
+      ],
+      "sub_qa": [
+        [
+          "Which British racing driver has raced for 7 different teams?",
+          "John Paul Johnny Herbert"
+        ],
+        [
+          "Which driver won the European Grand Prix in 1999?",
+          "Johnny Herbert"
+        ]
+      ],
+      "pred": "Johnny Herbert",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ae4d3c95542990ba0bbb165",
+      "question": "In what city can a person find both the Nusretiye Clock Tower and the Eski Imaret Mosque be found?",
+      "gold": "Istanbul, Turkey",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Where is the Nusretiye Clock Tower located?",
+        "Where is the Eski Imaret Mosque located?"
+      ],
+      "sub_qa": [
+        [
+          "Where is the Nusretiye Clock Tower located?",
+          "Istanbul"
+        ],
+        [
+          "Where is the Eski Imaret Mosque located?",
+          "Istanbul"
+        ]
+      ],
+      "pred": "Istanbul",
+      "em": 0.0,
+      "f1": 0.6666666666666666,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a790d8f554299029c4b5eec",
+      "question": "Which English musician is known for both the songs \"See Yourself\" and \"Withing You Without You\"?",
+      "gold": "George Harrison",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Who is known for the song 'See Yourself'?",
+        "Who is known for the song 'Within You Without You'?"
+      ],
+      "sub_qa": [
+        [
+          "Who is known for the song 'See Yourself'?",
+          "George Harrison"
+        ],
+        [
+          "Who is known for the song 'Within You Without You'?",
+          "George Harrison"
+        ]
+      ],
+      "pred": "George Harrison",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a717d4c5542994082a3e854",
+      "question": "Who has written more than 300 papers, Semyon Aranovich Gershgorin or Pavel Alexandrov?",
+      "gold": "Pavel Sergeyevich Alexandrov",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "How many papers has Semyon Aranovich Gershgorin written?",
+        "How many papers has Pavel Alexandrov written?"
+      ],
+      "sub_qa": [
+        [
+          "How many papers has Semyon Aranovich Gershgorin written?",
+          "Not in passages"
+        ],
+        [
+          "How many papers has Pavel Alexandrov written?",
+          "300"
+        ]
+      ],
+      "pred": "Not in passages",
+      "em": 0.0,
+      "f1": 0.0,
+      "n_llm_calls": 4,
+      "soft_em": 0.0
+    },
+    {
+      "qid": "5a77322055429972597f1494",
+      "question": "Which software application was originally made for the company that acquired RadioShack in 1963?",
+      "gold": "DeskMate",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What company acquired RadioShack in 1963?",
+        "What software application was originally made for that company?"
+      ],
+      "sub_qa": [
+        [
+          "What company acquired RadioShack in 1963?",
+          "Tandy Corporation"
+        ],
+        [
+          "What software application was originally made for that company?",
+          "DeskMate"
+        ]
+      ],
+      "pred": "DeskMate",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ae163b3554299422ee99678",
+      "question": "Who wrote Bring Me Sunshine and where did they write it?",
+      "gold": "Bring Me Sunshine (1994) was originally a three-part retrospective in tribute to Eric Morecambe",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Who wrote Bring Me Sunshine?",
+        "Where was Bring Me Sunshine written?"
+      ],
+      "sub_qa": [
+        [
+          "Who wrote Bring Me Sunshine?",
+          "Sylvia Dee"
+        ],
+        [
+          "Where was Bring Me Sunshine written?",
+          "Not in passages"
+        ]
+      ],
+      "pred": "Sylvia Dee Not in passages",
+      "em": 0.0,
+      "f1": 0.1111111111111111,
+      "n_llm_calls": 4,
+      "soft_em": 0.0
+    },
+    {
+      "qid": "5a77cb335542997042120b3a",
+      "question": "What American professional Hawaiian surfer born 18 October 1992 won the Rip Curl Pro Portugal?",
+      "gold": "John John Florence",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Which American professional Hawaiian surfer was born on 18 October 1992?",
+        "Who won the Rip Curl Pro Portugal?"
+      ],
+      "sub_qa": [
+        [
+          "Which American professional Hawaiian surfer was born on 18 October 1992?",
+          "John Florence"
+        ],
+        [
+          "Who won the Rip Curl Pro Portugal?",
+          "John John Florence"
+        ]
+      ],
+      "pred": "John Florence",
+      "em": 0.0,
+      "f1": 0.8,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5ae4a0ca5542995ad6573dcb",
+      "question": "Bill Nelson flew as a Payload Specialist on a Space Shuttle launched for the first time in what year?",
+      "gold": "1981",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "On what Space Shuttle did Bill Nelson fly as a Payload Specialist?",
+        "In what year was that Space Shuttle first launched?"
+      ],
+      "sub_qa": [
+        [
+          "On what Space Shuttle did Bill Nelson fly as a Payload Specialist?",
+          "Columbia"
+        ],
+        [
+          "In what year was that Space Shuttle first launched?",
+          "1981"
+        ]
+      ],
+      "pred": "1981",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a84e21d5542997b5ce3ff7c",
+      "question": "The actress and singer Heather Morris is best known for her role in which series, becoming a regular character in the second season?",
+      "gold": "Glee",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What series is Heather Morris best known for?",
+        "In what season did Heather Morris become a regular character in that series?"
+      ],
+      "sub_qa": [
+        [
+          "What series is Heather Morris best known for?",
+          "Glee"
+        ],
+        [
+          "In what season did Heather Morris become a regular character in that series?",
+          "second"
+        ]
+      ],
+      "pred": "Glee",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a797bd95542994bb9457016",
+      "question": "What age was Georgia Middleman when she started singing in the seventh-most populated city in the United States?",
+      "gold": "ten",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What is the seventh-most populated city in the United States?",
+        "When did Georgia Middleman start singing in that city?",
+        "How old was Georgia Middleman at that time?"
+      ],
+      "sub_qa": [
+        [
+          "What is the seventh-most populated city in the United States?",
+          "San Antonio"
+        ],
+        [
+          "When did Georgia Middleman start singing in that city?",
+          "age ten"
+        ],
+        [
+          "How old was Georgia Middleman at that time?",
+          "10"
+        ]
+      ],
+      "pred": "10",
+      "em": 0.0,
+      "f1": 0.0,
+      "n_llm_calls": 5,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a84973e5542992a431d1a67",
+      "question": "Stockely Webster has paintings hanging in what home (that serves as the residence for the Mayor of New York)?",
+      "gold": "Gracie Mansion",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What home serves as the residence for the Mayor of New York?",
+        "Whose paintings are hanging in that home?"
+      ],
+      "sub_qa": [
+        [
+          "What home serves as the residence for the Mayor of New York?",
+          "Gracie Mansion"
+        ],
+        [
+          "Whose paintings are hanging in that home?",
+          "Stokely Webster"
+        ]
+      ],
+      "pred": "Gracie Mansion",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a7736bc554299373536021b",
+      "question": "What composer with an Italian libretto was born 4 March 1678?",
+      "gold": "Antonio Lucio Vivaldi",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Which composer was born on 4 March 1678?",
+        "Did that composer have an Italian libretto?"
+      ],
+      "sub_qa": [
+        [
+          "Which composer was born on 4 March 1678?",
+          "Antonio Lucio Vivaldi"
+        ],
+        [
+          "Did that composer have an Italian libretto?",
+          "yes"
+        ]
+      ],
+      "pred": "Antonio Lucio Vivaldi",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5add7c9c5542990dbb2f7e60",
+      "question": "Ellie Parker is a 2005 American drama-comedy film whose title character is played by an English actress who made her screen debut in what Australian drama film?",
+      "gold": "For Love Alone",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Who plays the title character in the film Ellie Parker?",
+        "In what Australian drama film did that actress make her screen debut?"
+      ],
+      "sub_qa": [
+        [
+          "Who plays the title character in the film Ellie Parker?",
+          "Naomi Watts"
+        ],
+        [
+          "In what Australian drama film did that actress make her screen debut?",
+          "For Love Alone"
+        ]
+      ],
+      "pred": "For Love Alone",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    },
+    {
+      "qid": "5a7d3470554299452d57bb56",
+      "question": "A scam involving a male calling small town fast-food restaurants and pretending to be a police officer to have them strip search employees was turned into a movie of what name?",
+      "gold": "Compliance",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What scam involved a male calling small town fast-food restaurants and pretending to be a police officer?",
+        "What movie was that scam turned into?"
+      ],
+      "sub_qa": [
+        [
+          "What scam involved a male calling small town fast-food restaurants and pretending to be a police officer?",
+          "The strip search phone call scam"
+        ],
+        [
+          "What movie was that scam turned into?",
+          "Compliance"
+        ]
+      ],
+      "pred": "Compliance",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4,
+      "soft_em": 1.0
+    }
+  ]
+}

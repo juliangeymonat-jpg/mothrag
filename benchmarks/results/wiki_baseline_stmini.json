@@ -1,0 +1,125 @@
+{
+  "summary": {
+    "n": 10,
+    "em": 0.3,
+    "f1": 0.39,
+    "retrieval_recall": 0.6,
+    "anchor_bias_beta": 0.0,
+    "anchor_bias_tau": 0.1,
+    "reader_model": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+    "top_k_chunks": 5,
+    "elapsed_s": 15.83338212966919
+  },
+  "per_question": [
+    {
+      "qid": "5abe953b5542993f32c2a170",
+      "question": "what is one of the stars of  The Newcomers known for",
+      "gold": "superhero roles as the Marvel Comics",
+      "pred": "Yaar Adutha Prabhu Deva",
+      "em": 0.0,
+      "f1": 0.0,
+      "retrieval_recall": 0.0,
+      "route": "warm-up",
+      "top1_conf": 0.6178708672523499
+    },
+    {
+      "qid": "5ab69f9a554299710c8d1ef8",
+      "question": "The fictional private detective that appears in \"The Adventure of the Seven Clocks\" what written by whom?",
+      "gold": "Sir Arthur Conan Doyle",
+      "pred": "Sherlock Holmes by Adrian Conan Doyle",
+      "em": 0.0,
+      "f1": 0.4,
+      "retrieval_recall": 0.5,
+      "route": "high-conf",
+      "top1_conf": 1.2403850555419922
+    },
+    {
+      "qid": "5abc030e554299642a094bdc",
+      "question": "The Distribution of Industry act was passed by a man who was prime minister when? ",
+      "gold": "1945 to 1951",
+      "pred": "Not mentioned",
+      "em": 0.0,
+      "f1": 0.0,
+      "retrieval_recall": 0.0,
+      "route": "high-conf",
+      "top1_conf": 0.8859467506408691
+    },
+    {
+      "qid": "5ae6c2285542995703ce8b9a",
+      "question": "Sparking the Marian civil war, who helped the recently abdicated queen to escape her imprisonment?",
+      "gold": "the Queen's gaoler",
+      "pred": "No one is mentioned.",
+      "em": 0.0,
+      "f1": 0.0,
+      "retrieval_recall": 0.5,
+      "route": "high-conf",
+      "top1_conf": 0.8850857019424438
+    },
+    {
+      "qid": "5ab57fc4554299488d4d99c0",
+      "question": "In which county is the town in which Raymond Robertsen was born ?",
+      "gold": "Finnmark county,",
+      "pred": "Not mentioned",
+      "em": 0.0,
+      "f1": 0.0,
+      "retrieval_recall": 0.5,
+      "route": "high-conf",
+      "top1_conf": 1.0423409938812256
+    },
+    {
+      "qid": "5ade9c9c5542997c77adee8c",
+      "question": "What screenplay was worked on by both Edward Carfagno and Miklos Rozsa?",
+      "gold": "Julius Caesar",
+      "pred": "None mentioned.",
+      "em": 0.0,
+      "f1": 0.0,
+      "retrieval_recall": 0.5,
+      "route": "high-conf",
+      "top1_conf": 0.7742169499397278
+    },
+    {
+      "qid": "5a749af055429979e28829b7",
+      "question": "Which Walt Disney film was produced first, The Apple Dumpling Gang or Something Wicked This Way Comes?",
+      "gold": "The Apple Dumpling Gang",
+      "pred": "The Apple Dumpling Gang",
+      "em": 1.0,
+      "f1": 1.0,
+      "retrieval_recall": 1.0,
+      "route": "high-conf",
+      "top1_conf": 1.638204574584961
+    },
+    {
+      "qid": "5ae1389655429901ffe4ae05",
+      "question": "Bethpage State Parkway begins with an interchange at which Long Island-based limited access highway?",
+      "gold": "Southern State Parkway",
+      "pred": "Southern State Parkway",
+      "em": 1.0,
+      "f1": 1.0,
+      "retrieval_recall": 1.0,
+      "route": "high-conf",
+      "top1_conf": 1.3248790502548218
+    },
+    {
+      "qid": "5adcd4325542994d58a2f6ed",
+      "question": "Are Colocasia and Coronilla both flowering plants?",
+      "gold": "yes",
+      "pred": "Yes, they are.",
+      "em": 0.0,
+      "f1": 0.5,
+      "retrieval_recall": 1.0,
+      "route": "high-conf",
+      "top1_conf": 1.5743707418441772
+    },
+    {
+      "qid": "5a85c3225542992a431d1b95",
+      "question": "The 2000 ICC KnockOut Trophy was the debut of a Jamaican cricketer who is a right-handed what?",
+      "gold": "middle order batsman",
+      "pred": "middle order batsman",
+      "em": 1.0,
+      "f1": 1.0,
+      "retrieval_recall": 1.0,
+      "route": "high-conf",
+      "top1_conf": 1.2733031511306763
+    }
+  ]
+}

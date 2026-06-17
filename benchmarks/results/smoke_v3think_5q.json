@@ -1,0 +1,75 @@
+{
+  "summary": {
+    "n": 5,
+    "em": 0.2,
+    "f1": 0.38701298701298703,
+    "retrieval_recall": 0.9,
+    "anchor_bias_beta": 0.0,
+    "anchor_bias_tau": 0.1,
+    "reader_model": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+    "top_k_chunks": 10,
+    "elapsed_s": 803.4098966121674
+  },
+  "per_question": [
+    {
+      "qid": "5abe953b5542993f32c2a170",
+      "question": "what is one of the stars of  The Newcomers known for",
+      "gold": "superhero roles as the Marvel Comics",
+      "pred": "superhero roles",
+      "raw": "Reasoning:\n- Step 1 (identify): [1] The Newcomers stars Christopher McCoy, Kate Bosworth, Paul Dano and Chris Evans, and [3] mentions Chris Evans' roles.\n- Step 2 (extract): Chris Evans is known for his superhero roles.\n- Step 3 (combine): single-hop fact about one of the stars.\nFinal answer: superhero roles",
+      "em": 0.0,
+      "f1": 0.5714285714285715,
+      "retrieval_recall": 1.0,
+      "route": "warm-up",
+      "top1_conf": 0.4178708493709564
+    },
+    {
+      "qid": "5ab69f9a554299710c8d1ef8",
+      "question": "The fictional private detective that appears in \"The Adventure of the Seven Clocks\" what written by whom?",
+      "gold": "Sir Arthur Conan Doyle",
+      "pred": "Adrian Conan Doyle and John Dickson Carr",
+      "raw": "Reasoning:\n- Step 1 (identify): [2] \"The Adventure of the Seven Clocks\" is a Sherlock Holmes story by Adrian Conan Doyle and John Dickson Carr.\n- Step 2 (extract): \"Adrian Conan Doyle and John Dickson Carr\".\n- Step 3 (combine): single-hop author span.\nFinal answer: Adrian Conan Doyle and John Dickson Carr",
+      "em": 0.0,
+      "f1": 0.36363636363636365,
+      "retrieval_recall": 1.0,
+      "route": "high-conf",
+      "top1_conf": 0.7403850555419922
+    },
+    {
+      "qid": "5abc030e554299642a094bdc",
+      "question": "The Distribution of Industry act was passed by a man who was prime minister when? ",
+      "gold": "1945 to 1951",
+      "pred": "1945 to 1951",
+      "raw": "Reasoning:\n- Step 1 (identify): [1] The Distribution of Industry Act 1950 was passed by the Labour government of Clement Attlee, and [2] mentions that Clement Attlee served as Prime Minister of the United Kingdom from 1945 to 1951.\n- Step 2 (extract): The Distribution of Industry Act was passed in 1950, and Attlee was Prime Minister from \"1945 to 1951\".\n- Step 3 (combine): Since 1950 falls within the range of 1945 to 1951, Attlee was indeed Prime Minister when the act was passed, so the relevant time is \"1945 to 1951\".\nFinal answer: 1945 to 1951",
+      "em": 1.0,
+      "f1": 1.0,
+      "retrieval_recall": 1.0,
+      "route": "high-conf",
+      "top1_conf": 0.715406060218811
+    },
+    {
+      "qid": "5ae6c2285542995703ce8b9a",
+      "question": "Sparking the Marian civil war, who helped the recently abdicated queen to escape her imprisonment?",
+      "gold": "the Queen's gaoler",
+      "pred": "her gaoler's family",
+      "raw": "Reasoning:\n- Step 1 (identify): [2] and [3] are relevant because they mention Mary, Queen of Scots' imprisonment and escape.\n- Step 2 (extract): [2] \"Mary escaped, heading west to the country of the Hamiltons\", [3] \"Mary, Queen of Scots was imprisoned here in 1567\u20131568, and forced to abdicate as queen, before escaping with the help of her gaoler's family\".\n- Step 3 (combine): multi-hop, combining the facts that Mary escaped with help, specifically [3] states it was \"with the help of her gaoler's family\".\nFinal answer: her gaoler's family",
+      "em": 0.0,
+      "f1": 0.0,
+      "retrieval_recall": 1.0,
+      "route": "high-conf",
+      "top1_conf": 0.8327040076255798
+    },
+    {
+      "qid": "5ab57fc4554299488d4d99c0",
+      "question": "In which county is the town in which Raymond Robertsen was born ?",
+      "gold": "Finnmark county,",
+      "pred": "Not in passages",
+      "raw": "Reasoning:\n- Step 1 (identify): [1] Raymond Robertsen was born in Hammerfest, and we need to find the county of Hammerfest to answer the question.\n- Step 2 (extract): Hammerfest is mentioned as the birthplace of Raymond Robertsen.\n- Step 3 (combine): single-hop location, but we need to identify the county of Hammerfest. Hammerfest is a municipality in Finnmark county, Norway, but the passage does not explicitly state the county. However, based on general knowledge, Hammerfest is located in Finnmark, but since Finnmark is now part of Troms og Finnmark county after a merger in 2020, and the passage does not provide the current county, the most accurate answer based on the passage alone would be to identify the location as Hammerfest, without specifying the county as it is not provided in the passage.\n\nFinal answer: Not in passages",
+      "em": 0.0,
+      "f1": 0.0,
+      "retrieval_recall": 0.5,
+      "route": "high-conf",
+      "top1_conf": 0.8259912729263306
+    }
+  ]
+}

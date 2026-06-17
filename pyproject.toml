@@ -1,0 +1,107 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mothrag"
+version = "0.5.0"
+description = "MothRAG: adaptive multi-arm subset routing for multi-hop retrieval-augmented generation — high-level Python API with auto-defaults."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Julian Geymonat", email = "juliangeymonat@gmail.com" },
+]
+keywords = [
+    "rag",
+    "retrieval-augmented-generation",
+    "multi-hop",
+    "question-answering",
+    "hotpotqa",
+    "ensemble",
+    "llm",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Linguistic",
+]
+# Minimal core deps — heavy retrieval/embedder backends are optional extras.
+dependencies = [
+    "numpy>=1.24",
+    "requests>=2.31",
+    "typing-extensions>=4.8",
+    "python-dotenv>=1.0",
+    "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+# Embedding backends
+gemini = ["google-genai>=0.3"]
+vertex = ["google-cloud-aiplatform>=1.50"]
+sentence-transformers = ["sentence-transformers>=2.7"]
+# Reader backends
+openai = ["openai>=1.40"]
+# Retrieval features
+retrieval = [
+    "scikit-learn>=1.3",
+    "networkx>=3.0",
+    "rank-bm25>=0.2.2",
+]
+# Vector store adapters
+faiss = ["faiss-cpu>=1.7"]
+# Active-learning extensions (Strategy #9 Layer 1 spaCy dep-parse)
+active-learning = ["spacy>=3.7,<4"]
+# Hybrid dense + graph retrieval (OSU-NLP-Group HippoRAG2)
+hybrid-graph = ["hipporag>=1.0"]
+# Document loaders (v0.5.0+)
+pdf = ["pypdf>=4.0"]
+html = ["beautifulsoup4>=4.12"]
+loaders = ["mothrag[pdf,html]"]
+# Production stack (the MOTHRAG paper headline stack)
+prod = [
+    "mothrag[gemini,openai,sentence-transformers,retrieval,faiss,loaders]",
+]
+# Enterprise GCP stack (Vertex AI in GDPR-region project + production deps)
+enterprise = [
+    "mothrag[vertex,openai,sentence-transformers,retrieval,faiss,loaders]",
+]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.5",
+    "build>=1.0",
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.4",
+]
+all = ["mothrag[prod,dev]"]
+
+[project.urls]
+Homepage = "https://github.com/juliangeymonat-jpg/mothrag"
+Repository = "https://github.com/juliangeymonat-jpg/mothrag"
+Issues = "https://github.com/juliangeymonat-jpg/mothrag/issues"
+
+[project.scripts]
+mothrag = "mothrag.cli.main:main"
+mothrag-smoke = "mothrag.cli.smoke:main"
+
+[tool.setuptools.packages.find]
+include = ["mothrag*"]
+exclude = ["tests*", "examples*", "src*", "poc*", "research*", "spec*", "paper*", "benchmarks*", "docs*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"

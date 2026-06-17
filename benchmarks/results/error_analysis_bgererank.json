@@ -1,0 +1,211 @@
+{
+  "source": "results/wiki500_st_topk10_bgererank.json",
+  "summary": {
+    "n": 50,
+    "em": 0.64,
+    "f1": 0.747859649122807,
+    "retrieval_recall": 0.96,
+    "anchor_bias_beta": 0.0,
+    "anchor_bias_tau": 0.1,
+    "reader_model": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+    "top_k_chunks": 10,
+    "elapsed_s": 6379.886135339737
+  },
+  "n_failures": 18,
+  "fail_mode_distribution": {
+    "READER_WRONG_FACT": 5,
+    "READER_INCOMPLETE": 6,
+    "RETRIEVAL_PARTIAL": 4,
+    "READER_PARAPHRASE": 3
+  },
+  "by_mode": {
+    "READER_WRONG_FACT": [
+      {
+        "qid": "5abe953b5542993f32c2a170",
+        "question": "what is one of the stars of  The Newcomers known for",
+        "gold": "superhero roles as the Marvel Comics",
+        "pred": "Captain America",
+        "f1": 0.0,
+        "retrieval_recall": 1.0,
+        "route": "warm-up",
+        "top1_conf": 0.4178708493709564
+      },
+      {
+        "qid": "5ae6c2285542995703ce8b9a",
+        "question": "Sparking the Marian civil war, who helped the recently abdicated queen to escape her imprisonment?",
+        "gold": "the Queen's gaoler",
+        "pred": "Her gaoler's family",
+        "f1": 0.0,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 0.8327040076255798
+      },
+      {
+        "qid": "5ab3cecd5542992ade7c6eae",
+        "question": "How do the Peter Laufer books Forbidden Creatures and No Animals Were Harmed differ in their focus on animals?",
+        "gold": "his own opinions changed",
+        "pred": "Exotic pets and entertainment abuse.",
+        "f1": 0.0,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 1.5912015438079834
+      },
+      {
+        "qid": "5a8835dc5542994846c1ce2b",
+        "question": "Who is a winner of the 2013 6 Hours of Silverstone a co-commentator for?",
+        "gold": "BBC Formula One",
+        "pred": "Allan McNish",
+        "f1": 0.0,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 0.9734807014465332
+      },
+      {
+        "qid": "5a7542425542996c70cfaecc",
+        "question": "Who was born first, Karen Joy Fowler or Bruce Chatwin?",
+        "gold": "Bruce Chatwin",
+        "pred": "Karen Joy Fowler",
+        "f1": 0.0,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 0.7263883352279663
+      }
+    ],
+    "READER_INCOMPLETE": [
+      {
+        "qid": "5ab69f9a554299710c8d1ef8",
+        "question": "The fictional private detective that appears in \"The Adventure of the Seven Clocks\" what written by whom?",
+        "gold": "Sir Arthur Conan Doyle",
+        "pred": "Sherlock Holmes by Adrian Conan Doyle",
+        "f1": 0.4,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 0.7403850555419922
+      },
+      {
+        "qid": "5adcd4325542994d58a2f6ed",
+        "question": "Are Colocasia and Coronilla both flowering plants?",
+        "gold": "yes",
+        "pred": "Yes, they are.",
+        "f1": 0.5,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 1.1348477602005005
+      },
+      {
+        "qid": "5ab94bc2554299743d22eacf",
+        "question": "Bytham Castle is a castle in the civil parish of how many houses?",
+        "gold": "300",
+        "pred": "Around 300 houses.",
+        "f1": 0.5,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 0.8859983682632446
+      },
+      {
+        "qid": "5ae1f17e554299234fd04349",
+        "question": "Which is located in Cornwall, Southwell Minster or Truro Cathedral?",
+        "gold": "The Cathedral of the Blessed Virgin Mary, Truro",
+        "pred": "Truro Cathedral",
+        "f1": 0.5,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 1.8471636772155762
+      },
+      {
+        "qid": "5a8481945542997175ce1ed3",
+        "question": "Are Steve Perry and Leslie West both singers?",
+        "gold": "yes",
+        "pred": "Yes, they are.",
+        "f1": 0.5,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 0.8214964270591736
+      },
+      {
+        "qid": "5ab29c24554299449642c932",
+        "question": "Are Giuseppe Verdi and Ambroise Thomas both Opera composers ?",
+        "gold": "yes",
+        "pred": "Yes, they are.",
+        "f1": 0.5,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 1.2386021614074707
+      }
+    ],
+    "RETRIEVAL_PARTIAL": [
+      {
+        "qid": "5ab57fc4554299488d4d99c0",
+        "question": "In which county is the town in which Raymond Robertsen was born ?",
+        "gold": "Finnmark county,",
+        "pred": "Cumberland County",
+        "f1": 0.5,
+        "retrieval_recall": 0.5,
+        "route": "high-conf",
+        "top1_conf": 0.8259912133216858
+      },
+      {
+        "qid": "5a7a3a945542996a35c17147",
+        "question": "One Raffles Place is one of the tallest skyscrapers in the city of Singapore and tallest in the wolrd outside North America until it was succeeded by a Building in city?",
+        "gold": "Hong Kong",
+        "pred": "Bank of China Tower",
+        "f1": 0.0,
+        "retrieval_recall": 0.5,
+        "route": "high-conf",
+        "top1_conf": 1.9399125576019287
+      },
+      {
+        "qid": "5a83411655429966c78a6b5d",
+        "question": "Who created the NBC sitcom that Johnny Pemberton appears in as the character Bo Thompson?",
+        "gold": "Justin Spitzer",
+        "pred": "Reed Agnew and Eli Jorné",
+        "f1": 0.0,
+        "retrieval_recall": 0.5,
+        "route": "high-conf",
+        "top1_conf": 1.188652753829956
+      },
+      {
+        "qid": "5ae163b3554299422ee99678",
+        "question": "Who wrote Bring Me Sunshine and where did they write it?",
+        "gold": "Bring Me Sunshine (1994) was originally a three-part retrospective in tribute to Eric Morecambe",
+        "pred": "Sylvia Dee, location not specified.",
+        "f1": 0.0,
+        "retrieval_recall": 0.5,
+        "route": "high-conf",
+        "top1_conf": 0.8805805444717407
+      }
+    ],
+    "READER_PARAPHRASE": [
+      {
+        "qid": "5ab5f372554299488d4d9a60",
+        "question": "Which opera has more acts, La jolie fille de Perth or Mitridate, re di Ponto?",
+        "gold": "La jolie fille de Perth \"(The Fair Maid of Perth)\" is an opera in four acts",
+        "pred": "La jolie fille de Perth",
+        "f1": 0.5263157894736842,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 0.8859854340553284
+      },
+      {
+        "qid": "5ae4d3c95542990ba0bbb165",
+        "question": "In what city can a person find both the Nusretiye Clock Tower and the Eski Imaret Mosque be found?",
+        "gold": "Istanbul, Turkey",
+        "pred": "Istanbul",
+        "f1": 0.6666666666666666,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 0.9506831169128418
+      },
+      {
+        "qid": "5a717d4c5542994082a3e854",
+        "question": "Who has written more than 300 papers, Semyon Aranovich Gershgorin or Pavel Alexandrov?",
+        "gold": "Pavel Sergeyevich Alexandrov",
+        "pred": "Pavel Alexandrov",
+        "f1": 0.8,
+        "retrieval_recall": 1.0,
+        "route": "high-conf",
+        "top1_conf": 0.7463091611862183
+      }
+    ]
+  }
+}

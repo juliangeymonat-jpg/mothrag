@@ -1,0 +1,51 @@
+{
+  "summary": {
+    "n": 3,
+    "em": 0.0,
+    "f1": 0.16666666666666666,
+    "retrieval_recall": 1.0,
+    "anchor_bias_beta": 0.0,
+    "anchor_bias_tau": 0.1,
+    "reader_model": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+    "top_k_chunks": 10,
+    "elapsed_s": 439.3387212753296
+  },
+  "per_question": [
+    {
+      "qid": "5abe953b5542993f32c2a170",
+      "question": "what is one of the stars of  The Newcomers known for",
+      "gold": "superhero roles as the Marvel Comics",
+      "pred": "Captain America",
+      "raw": "Reasoning:\n- Step 1 (identify): [1] mentions The Newcomers and its stars, including Christopher McCoy, Kate Bosworth, Paul Dano, and Chris Evans. [3] provides more information about Chris Evans.\n- Step 2 (extract): Chris Evans is known for his superhero roles as Steve Rogers / Captain America and Johnny Storm / Human Torch.\n- Step 3 (combine): single-hop, the question asks for one of the stars of The Newcomers, and Chris Evans is one of them, known for his roles in the Marvel Cinematic Universe.\nFinal answer: Captain America",
+      "em": 0.0,
+      "f1": 0.0,
+      "retrieval_recall": 1.0,
+      "route": "warm-up",
+      "top1_conf": 0.4178708493709564
+    },
+    {
+      "qid": "5ab69f9a554299710c8d1ef8",
+      "question": "The fictional private detective that appears in \"The Adventure of the Seven Clocks\" what written by whom?",
+      "gold": "Sir Arthur Conan Doyle",
+      "pred": "Sherlock Holmes",
+      "raw": "Reasoning:\n- Step 1 (identify): [2] mentions \"The Adventure of the Seven Clocks\" is a Sherlock Holmes story.\n- Step 2 (extract): The story \"The Adventure of the Seven Clocks\" was written by Adrian Conan Doyle and John Dickson Carr, and it features Sherlock Holmes as the fictional private detective.\n- Step 3 (combine): single-hop, the question directly asks about the fictional private detective in \"The Adventure of the Seven Clocks\" and who wrote it.\n\nFinal answer: Sherlock Holmes",
+      "em": 0.0,
+      "f1": 0.0,
+      "retrieval_recall": 1.0,
+      "route": "high-conf",
+      "top1_conf": 0.7403850555419922
+    },
+    {
+      "qid": "5abc030e554299642a094bdc",
+      "question": "The Distribution of Industry act was passed by a man who was prime minister when? ",
+      "gold": "1945 to 1951",
+      "pred": "1945",
+      "raw": "Reasoning:\n- Step 1 (identify): [1] mentions the Distribution of Industry Act 1950 was passed by the Labour government of Clement Attlee, and [2] provides information about Clement Attlee's term as Prime Minister.\n- Step 2 (extract): The Distribution of Industry Act 1950 was passed during Clement Attlee's term as Prime Minister, which was from 1945 to 1951.\n- Step 3 (combine): Since the Act was passed in 1950, it falls within Attlee's term as Prime Minister, which was from 1945 to 1951.\n\nFinal answer: 1945",
+      "em": 0.0,
+      "f1": 0.5,
+      "retrieval_recall": 1.0,
+      "route": "high-conf",
+      "top1_conf": 0.715406060218811
+    }
+  ]
+}

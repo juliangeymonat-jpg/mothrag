@@ -1,0 +1,78 @@
+{
+  "summary": {
+    "n": 3,
+    "em": 0.3333333333333333,
+    "f1": 0.671957671957672,
+    "n_decomposed": 2,
+    "decompose_failures": 0,
+    "reader_model": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+    "top_k_chunks": 10,
+    "top_k_subq": 5,
+    "elapsed_s": 442.21341013908386
+  },
+  "per_question": [
+    {
+      "qid": "5abe953b5542993f32c2a170",
+      "question": "what is one of the stars of  The Newcomers known for",
+      "gold": "superhero roles as the Marvel Comics",
+      "complexity": "simple",
+      "decomposed": false,
+      "sub_qs": [],
+      "sub_qa": [],
+      "pred": "superhero roles",
+      "em": 0.0,
+      "f1": 0.5714285714285715,
+      "n_llm_calls": 1
+    },
+    {
+      "qid": "5ab69f9a554299710c8d1ef8",
+      "question": "The fictional private detective that appears in \"The Adventure of the Seven Clocks\" what written by whom?",
+      "gold": "Sir Arthur Conan Doyle",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "What fictional private detective appears in 'The Adventure of the Seven Clocks'?",
+        "Who wrote 'The Adventure of the Seven Clocks'?"
+      ],
+      "sub_qa": [
+        [
+          "What fictional private detective appears in 'The Adventure of the Seven Clocks'?",
+          "Sherlock Holmes"
+        ],
+        [
+          "Who wrote 'The Adventure of the Seven Clocks'?",
+          "Adrian Conan Doyle"
+        ]
+      ],
+      "pred": "Sherlock Holmes Adrian Conan Doyle",
+      "em": 0.0,
+      "f1": 0.4444444444444445,
+      "n_llm_calls": 4
+    },
+    {
+      "qid": "5abc030e554299642a094bdc",
+      "question": "The Distribution of Industry act was passed by a man who was prime minister when? ",
+      "gold": "1945 to 1951",
+      "complexity": "multi-hop",
+      "decomposed": true,
+      "sub_qs": [
+        "Who passed the Distribution of Industry act?",
+        "When was that person prime minister?"
+      ],
+      "sub_qa": [
+        [
+          "Who passed the Distribution of Industry act?",
+          "Clement Attlee"
+        ],
+        [
+          "When was that person prime minister?",
+          "1945 to 1951"
+        ]
+      ],
+      "pred": "1945 to 1951",
+      "em": 1.0,
+      "f1": 1.0,
+      "n_llm_calls": 4
+    }
+  ]
+}

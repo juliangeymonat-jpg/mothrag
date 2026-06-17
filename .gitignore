@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Build / dist
+build/
+dist/
+*.whl
+
+# Local data (large reproducible artifacts)
+poc/**/data/raw/
+poc/**/*.parquet
+poc/**/emb_*.npy
+poc/**/checkpoints/
+
+# Secrets (never commit)
+.env
+.env.*
+!.env.example
+*credentials*
+*.pem
+*.key
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+.claude/
+
+# LaTeX compile artifacts (paper builds from source: main.tex + references.bib)
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.pdf
+paper/*.toc
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+paper/__pycache__/

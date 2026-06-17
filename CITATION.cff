@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+title: "MOTHRAG: Training-Free Multi-Hop Question Answering at Research-SOTA Parity on Commodity LLM APIs"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: Geymonat
+    given-names: Julian
+repository-code: "https://github.com/juliangeymonat-jpg/mothrag"
+license: Apache-2.0
+version: "0.5.0"
+date-released: "2026-06-12"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.20668567
+    description: "Zenodo preprint deposit of the paper"
+preferred-citation:
+  type: article
+  title: "MOTHRAG: Training-Free Multi-Hop Question Answering at Research-SOTA Parity on Commodity LLM APIs"
+  authors:
+    - family-names: Geymonat
+      given-names: Julian
+  year: 2026
+  doi: 10.5281/zenodo.20668567
+  notes: "Preprint (Zenodo). arXiv version pending — update this entry with the arXiv ID once announced."
