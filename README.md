@@ -12,6 +12,22 @@
 
 **Author:** Julian Geymonat · **Research supported by:** ItalySoft srl · **License:** Apache-2.0 · **Paper:** arXiv link pending · [Zenodo preprint DOI: 10.5281/zenodo.20668567](https://doi.org/10.5281/zenodo.20668567) · **Site:** [mothrag.com](https://mothrag.com)
 
+## What it's for
+
+Point MOTHRAG at your documents and ask questions whose answer is spread across *several* of them. Plain RAG (retrieve top-k chunks, drop them in the prompt) answers "what does document X say about Y." It breaks on "connect-the-dots" questions that need two or three sources linked together.
+
+Example: given "TechNova's data center is in Frankfurt," "Frankfurt is in Germany," and "data centers in Germany must comply with the EU GDPR," answer *"Does TechNova have to comply with the GDPR?"* — one retrieval can't; MOTHRAG chains the steps and shows its work.
+
+**Reach for it when:**
+- your questions span multiple documents and plain RAG gets them wrong;
+- you need to trust or audit the answer (the proof tree shows each step);
+- you want the same answer every time (deterministic, not a stochastic agent loop);
+- you can't or won't run GPUs.
+
+**Not a fit for** single-fact lookups (plain RAG is fine there) or open-ended/creative generation.
+
+---
+
 Every component — reader, embedder, retrieval judges — sits behind a commodity pay-per-call API. No local GPU, no constrained decoding, no non-commercially-licensed model. Deployment is a package install plus API keys.
 
 ## Results (paper, n=1000 per dataset, Llama-3.3-70B reader, single uniform configuration)
