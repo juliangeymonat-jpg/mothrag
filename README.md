@@ -32,6 +32,8 @@ Every component — reader, embedder, retrieval judges — sits behind a commodi
 
 ## Results (paper, n=1000 per dataset, Llama-3.3-70B reader, single uniform configuration)
 
+![F1 on HotpotQA / 2WikiMultiHopQA / MuSiQue — MOTHRAG (commodity APIs, no GPU) vs. HippoRAG 2, CoRAG, and NeocorRAG](assets/benchmark_comparison.png)
+
 | System | Deployment profile | HotpotQA | 2WikiMultiHopQA | MuSiQue | AVG |
 |---|---|---|---|---|---|
 | HippoRAG 2 (as published) | offline OpenIE graph + NV-Embed-v2 peak | 75.5 | 71.0 | 48.6 | 65.0 |
