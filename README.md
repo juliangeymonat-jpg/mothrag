@@ -10,7 +10,7 @@
 
 > **Deterministic, agentic-style multi-hop question answering at research-SOTA parity — on commodity LLM APIs alone. No GPU, no fine-tuning, a proof tree per answer.**
 
-**Author:** Julian Geymonat · **Research supported by:** ItalySoft srl · **License:** Apache-2.0 · **Paper:** [Zenodo preprint (DOI 10.5281/zenodo.20668567)](https://doi.org/10.5281/zenodo.20668567) · arXiv version pending · **Site:** [mothrag.com](https://mothrag.com)
+**Author:** Julian Geymonat · **Research supported by:** ItalySoft srl · **License:** Apache-2.0 · **Paper:** [Zenodo preprint (DOI 10.5281/zenodo.20668567)](https://doi.org/10.5281/zenodo.20668567) · **Demo:** [Hugging Face Space](https://huggingface.co/spaces/JUBOX99/mothrag-demo) · **Site:** [mothrag.com](https://mothrag.com)
 
 ## What it's for
 
@@ -105,7 +105,7 @@ The paper numbers come from the evaluation configuration (`scripts/route_prospec
 
 ## Citing
 
-See [`CITATION.cff`](CITATION.cff). Until the arXiv ID is live, cite the Zenodo preprint:
+See [`CITATION.cff`](CITATION.cff). Cite the Zenodo preprint:
 
 ```bibtex
 @misc{geymonat2026mothrag,
