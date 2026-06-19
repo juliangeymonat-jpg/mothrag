@@ -10,7 +10,7 @@
 
 > **Deterministic, agentic-style multi-hop question answering at research-SOTA parity — on commodity LLM APIs alone. No GPU, no fine-tuning, a proof tree per answer.**
 
-**Author:** Julian Geymonat · **Research supported by:** ItalySoft srl · **License:** Apache-2.0 · **Paper:** arXiv link pending · [Zenodo preprint DOI: 10.5281/zenodo.20668567](https://doi.org/10.5281/zenodo.20668567) · **Site:** [mothrag.com](https://mothrag.com)
+**Author:** Julian Geymonat · **Research supported by:** ItalySoft srl · **License:** Apache-2.0 · **Paper:** [Zenodo preprint (DOI 10.5281/zenodo.20668567)](https://doi.org/10.5281/zenodo.20668567) · arXiv version pending · **Site:** [mothrag.com](https://mothrag.com)
 
 ## What it's for
 
