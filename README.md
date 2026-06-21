@@ -23,7 +23,7 @@ The systems that chase this kind of multi-hop accuracy lean on heavy indexing �
 
 MothRag does the reasoning as **query-time orchestration over a plain dense index**. An update is **embed + append** — one embedding call, no LLM extraction, no graph rebuild, no retraining. So it stays current on data that moves under it.
 
-→ See it: a runnable [World Cup freshness demo](#) — the answer follows the standings as new
+→ See it: a runnable [World Cup freshness demo](https://huggingface.co/spaces/JUBOX99/mothrag-demo) — the answer follows the standings as new
 results are appended, with no re-index. Sourced cost comparison vs GraphRAG / HippoRAG2 /
 RAPTOR / LightRAG in [`GRAPH_COMPARISON.md`](#).
 
