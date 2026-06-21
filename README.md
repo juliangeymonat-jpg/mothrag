@@ -6,30 +6,41 @@
   </picture>
 </p>
 
-# MOTHRAG
+# MothRag
 
-> **Deterministic, agentic-style multi-hop question answering at research-SOTA parity — on commodity LLM APIs alone. No GPU, no fine-tuning, a proof tree per answer.**
+> **Deterministic, agentic-style multi-hop — research-SOTA parity without the graph you'd rebuild every day.**
 
-**Author:** Julian Geymonat · **Research supported by:** ItalySoft srl · **License:** Apache-2.0 · **Paper:** [Zenodo preprint (DOI 10.5281/zenodo.20668567)](https://doi.org/10.5281/zenodo.20668567) · **Demo:** [Hugging Face Space](https://huggingface.co/spaces/JUBOX99/mothrag-demo) · **Site:** [mothrag.com](https://mothrag.com)
+On commodity LLM APIs alone. No GPU, no fine-tuning, a proof tree per answer.
+
+**Author:** Julian Geymonat · **License:** Apache 2.0 · **Status:** v0.5.0a alpha
+📄 Paper: *(arXiv link pending)* · 🔗 Demo · 🌐 mothrag.com
 
 ## What it's for
 
-Point MOTHRAG at your documents and ask questions whose answer is spread across *several* of them. Plain RAG (retrieve top-k chunks, drop them in the prompt) answers "what does document X say about Y." It breaks on "connect-the-dots" questions that need two or three sources linked together.
+MothRag is for **answering questions over a corpus that changes** — where the answer also needs **multi-hop reasoning** (it's spread across several documents and has to be chained). Think live stats and standings, prices and filings, support tickets, news, or internal docs that get updated every day.
 
-Example: given "TechNova's data center is in Frankfurt," "Frankfurt is in Germany," and "data centers in Germany must comply with the EU GDPR," answer *"Does TechNova have to comply with the GDPR?"* — one retrieval can't; MOTHRAG chains the steps and shows its work.
+The systems that chase this kind of multi-hop accuracy lean on heavy indexing — building a knowledge graph (GraphRAG, HippoRAG) or training a retriever. MothRag **outscores the graph-based ones on every benchmark** (HotpotQA, 2WikiMultiHop, MuSiQue) — and without their cost: the moment your data changes, each of them has to push the new data **through a generative-LLM indexing pass** before it's queryable, and some recompute global structures on top. On data that moves daily, you pay that bill every time.
 
-**Reach for it when:**
-- your questions span multiple documents and plain RAG gets them wrong;
-- you need to trust or audit the answer (the proof tree shows each step);
-- you want the same answer every time (deterministic, not a stochastic agent loop);
-- you can't or won't run GPUs.
+MothRag does the reasoning as **query-time orchestration over a plain dense index**. An update is **embed + append** — one embedding call, no LLM extraction, no graph rebuild, no retraining. So it stays current on data that moves under it.
 
-**Not a fit for** single-fact lookups (plain RAG is fine there) or open-ended/creative generation.
+→ See it: a runnable [World Cup freshness demo](#) — the answer follows the standings as new
+results are appended, with no re-index. Sourced cost comparison vs GraphRAG / HippoRAG2 /
+RAPTOR / LightRAG in [`GRAPH_COMPARISON.md`](#).
+
+## Three things you get at once
+
+1. **Freshness — no rebuild.** Updates are embedding-only (`ingest()` embeds the changed
+   chunks and appends). No graph reconstruction, no retraining. The public API is graph-free.
+2. **No GPU, commodity APIs, cheap.** Reader = Llama-3.3-70B over an API (Groq), embedder =
+   Gemini. **~$0.032/query** measured (full config); **~$0.018/query** on the economy tier.
+3. **Deterministic + auditable.** Same input → same output, **zero run-to-run variance**, and
+   every answer ships an inspectable proof tree.
 
 ---
 
 Every component — reader, embedder, retrieval judges — sits behind a commodity pay-per-call API. No local GPU, no constrained decoding, no non-commercially-licensed model. Deployment is a package install plus API keys.
 
+## You don't trade accuracy for any of it
 ## Results (paper, n=1000 per dataset, Llama-3.3-70B reader, single uniform configuration)
 
 ![F1 on HotpotQA / 2WikiMultiHopQA / MuSiQue — MOTHRAG (commodity APIs, no GPU) vs. HippoRAG 2, CoRAG, and NeocorRAG](assets/benchmark_comparison.png)
