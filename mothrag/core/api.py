@@ -103,6 +103,21 @@ class VectorStore(Protocol):
     def __len__(self) -> int: ...
 
 
+@runtime_checkable
+class MutableVectorStore(VectorStore, Protocol):
+    """A :class:`VectorStore` that also supports removing and replacing
+    chunks by id, enabling incremental *updates* (a fact changed) and
+    *deletes* (a fact was retracted) without rebuilding the index.
+
+    Append-only stores need not implement this; :meth:`MothRAG.update` and
+    :meth:`MothRAG.delete` raise a clear error when the active store does
+    not support mutation.
+    """
+    def delete(self, chunk_ids: Sequence[str]) -> int: ...
+    def delete_by_doc(self, doc_id: str) -> int: ...
+    def upsert(self, chunks: Sequence[Chunk]) -> None: ...
+
+
 # ============================================================
 # DEFAULT BACKENDS — minimal, no-network, no-LLM fallbacks
 # ============================================================
@@ -246,6 +261,39 @@ class _MemoryVectorStore:
 
     def __len__(self) -> int:
         return len(self._chunks)
+
+    def delete(self, chunk_ids: Sequence[str]) -> int:
+        """Remove chunks (and their embeddings) by ``chunk_id``.
+
+        Returns the number of chunks actually removed; unknown ids are
+        ignored. O(n) over the current index, no rebuild. Keeps the
+        ``_chunks`` / ``_embeddings`` parallel lists aligned.
+        """
+        targets = set(chunk_ids)
+        if not targets:
+            return 0
+        kept_chunks: list[Chunk] = []
+        kept_embeddings: list[list[float]] = []
+        removed = 0
+        for chunk, emb in zip(self._chunks, self._embeddings):
+            if chunk.chunk_id in targets:
+                removed += 1
+            else:
+                kept_chunks.append(chunk)
+                kept_embeddings.append(emb)
+        self._chunks = kept_chunks
+        self._embeddings = kept_embeddings
+        return removed
+
+    def delete_by_doc(self, doc_id: str) -> int:
+        """Remove every chunk belonging to ``doc_id``. Returns the count."""
+        return self.delete([c.chunk_id for c in self._chunks if c.doc_id == doc_id])
+
+    def upsert(self, chunks: Sequence[Chunk]) -> None:
+        """Replace any existing chunks sharing a ``chunk_id`` with ``chunks``,
+        then append. Equivalent to delete-then-add in a single call."""
+        self.delete([c.chunk_id for c in chunks if c.chunk_id])
+        self.add(chunks)
 
 
 # ============================================================
@@ -795,6 +843,57 @@ class MothRAG:
             "MothRag ingested %d chunks from %d docs via %s retriever (index size now %d).",
             len(chunks), len(docs), self.retrieval, len(self.retriever),
         )
+
+    def delete(self, doc_id: str) -> int:
+        """Remove every chunk belonging to ``doc_id`` from the index.
+
+        Incremental retraction of a source document: no index rebuild, no
+        graph reconstruction, no retraining. Returns the number of chunks
+        removed. Requires ``retrieval='dense'`` and a mutable vector store
+        (the default in-memory store qualifies).
+        """
+        self._require_mutable("delete")
+        removed = self.vector_db.delete_by_doc(doc_id)
+        logger.info(
+            "MothRag deleted %d chunks for doc_id=%r (index size now %d).",
+            removed, doc_id, len(self.vector_db),
+        )
+        return removed
+
+    def update(self, doc_id: str, text: str,
+               metadata: dict[str, Any] | None = None) -> int:
+        """Replace the content stored under ``doc_id`` with ``text``.
+
+        The superseding-fact operation: the old chunks for ``doc_id`` are
+        removed and ``text`` is re-chunked, embedded and appended, so the
+        next query reasons over the new content. Incremental: one embedding
+        pass over the changed document, no index rebuild, no retraining.
+
+        Returns the number of stale chunks removed (0 if ``doc_id`` was not
+        present, in which case this acts as an insert).
+        """
+        self._require_mutable("update")
+        removed = self.delete(doc_id)
+        meta = dict(metadata or {})
+        meta["source"] = doc_id
+        self.ingest([Document(text=text, metadata=meta)])
+        return removed
+
+    def _require_mutable(self, op: str) -> None:
+        """Guard for :meth:`delete` / :meth:`update`: dense path plus a store
+        that supports mutation. Raises a clear error otherwise."""
+        if self.retrieval != "dense":
+            raise NotImplementedError(
+                f"MothRag.{op}() currently supports retrieval='dense'; "
+                f"retrieval={self.retrieval!r} maintains extra index state "
+                f"(graph / infobox) that incremental {op} does not yet reconcile."
+            )
+        if not isinstance(self.vector_db, MutableVectorStore):
+            raise NotImplementedError(
+                f"MothRag.{op}() needs a mutable vector store exposing "
+                f"delete()/upsert(); the active store "
+                f"{type(self.vector_db).__name__} is append-only."
+            )
 
     @staticmethod
     def _normalize_source(source: str | Path | Sequence[str | Document]) -> list[Document]:
