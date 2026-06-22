@@ -648,7 +648,11 @@ class MothRAG:
             )
         self.embedder: Embedder = embedder or _resolve_default_embedder()
         self.reader: Reader = reader or _resolve_default_reader()
-        self.vector_db: VectorStore = vector_db or _MemoryVectorStore()
+        # Identity check, not ``or``: an empty custom store has len 0 and is
+        # falsy, so ``vector_db or _MemoryVectorStore()`` would silently
+        # discard a freshly-constructed (still empty) injected store.
+        self.vector_db: VectorStore = (
+            vector_db if vector_db is not None else _MemoryVectorStore())
         self.production: bool = production
         self.mode: str = mode
         self.retry_mode: str = retry_mode

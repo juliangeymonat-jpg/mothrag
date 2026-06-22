@@ -104,6 +104,22 @@ print(result.confidence)     # arbitration confidence
 
 API keys via environment (see `.env.example`): `GROQ_API_KEY` (reader), `GEMINI_API_KEY` (embedder + grounding judge), `ANTHROPIC_API_KEY` (premium retrieval judge; optional — the economy tier uses Gemini).
 
+### Keeping the index current
+
+When a fact changes, replace it in place; when it is retracted, drop it. Both are incremental: one embedding pass over the changed document, no graph rebuild and no retraining.
+
+```python
+from mothrag import MothRAG, Document
+
+m = MothRAG()
+m.ingest([Document(text="The price is $10.", metadata={"source": "price"})])
+
+m.update("price", "The price is $20.")  # supersede in place
+m.delete("price")                       # retract entirely
+```
+
+`update`/`delete` key on a document's `source` id and require `retrieval="dense"` (the default); a clear error is raised on append-only vector stores.
+
 ## How it works
 
 Three separable stages; every model invocation is a commodity API call:

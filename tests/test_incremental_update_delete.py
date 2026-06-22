@@ -167,3 +167,17 @@ def test_update_raises_on_non_dense_retrieval():
     rag.retrieval = "dense_plus_infobox"  # exercise the guard without full setup
     with pytest.raises(NotImplementedError, match="retrieval='dense'"):
         rag.update("a", "x")
+
+
+def test_empty_custom_store_is_retained():
+    # Regression: an empty custom store has len 0 (falsy); the constructor
+    # must keep the injected store instead of discarding it via truthiness.
+    from mothrag import MothRAG
+    from mothrag.core.api import _HashEmbedder, _EchoReader, _MemoryVectorStore
+    store = _MemoryVectorStore()
+    rag = MothRAG(embedder=_HashEmbedder(), reader=_EchoReader(), vector_db=store)
+    assert rag.vector_db is store
+    # update/delete then operate on that very injected store end-to-end
+    rag.update("k", "value one")
+    assert len(store) >= 1
+    assert rag.delete("k") >= 1
