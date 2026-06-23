@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mothrag"
-version = "0.5.0"
+version = "0.6.0"
 description = "MothRAG: adaptive multi-arm subset routing for multi-hop retrieval-augmented generation — high-level Python API with auto-defaults."
 readme = "README.md"
 requires-python = ">=3.10"

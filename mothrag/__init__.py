@@ -24,7 +24,7 @@ For library-level access, import from submodules:
     from mothrag.eval import metrics, soft_em
 """
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 
 from mothrag.core.api import (
     Chunk,

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.0 (2026-06-23)
+
+- Incremental `update` / `delete` on the high-level API: `MothRAG.update(doc_id, text)` supersedes a document in place and `MothRAG.delete(doc_id)` retracts it, each a single embedding pass over the changed document with no index rebuild and no retraining. New `MutableVectorStore` protocol; the default in-memory store implements `delete` / `delete_by_doc` / `upsert`. Clear errors are raised on append-only stores or non-dense retrieval.
+- Fix: an empty custom vector store passed to the `MothRAG` constructor is no longer discarded (it has length 0 and was dropped by a truthiness check).
+
 ## 0.5.0 — 2026-06 (first public release)
 
 Public release accompanying the paper *"MOTHRAG: Training-Free Multi-Hop Question Answering at Research-SOTA Parity on Commodity LLM APIs"* (Zenodo DOI [10.5281/zenodo.20668567](https://doi.org/10.5281/zenodo.20668567)).
