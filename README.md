@@ -43,7 +43,13 @@ Every component — reader, embedder, retrieval judges — sits behind a commodi
 ## You don't trade accuracy for any of it
 ## Results (paper, n=1000 per dataset, Llama-3.3-70B reader, single uniform configuration)
 
+![Against the most popular RAG systems, MOTHRAG (commodity APIs, no GPU) outscores RAPTOR, GraphRAG and HippoRAG 2 on HotpotQA, 2WikiMultiHopQA and MuSiQue](assets/benchmark_popular.png)
+
+*Against the most popular RAG systems, MOTHRAG outscores every one on every benchmark, on commodity APIs alone.*
+
 ![F1 on HotpotQA / 2WikiMultiHopQA / MuSiQue — MOTHRAG (commodity APIs, no GPU) vs. HippoRAG 2, CoRAG, and NeocorRAG](assets/benchmark_comparison.png)
+
+*And against the GPU-bound research frontier (HippoRAG 2, CoRAG, NeocorRAG), MOTHRAG reaches the same tier without the GPU or the non-commercial models.*
 
 | System | Deployment profile | HotpotQA | 2WikiMultiHopQA | MuSiQue | AVG |
 |---|---|---|---|---|---|
