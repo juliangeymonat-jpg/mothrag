@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.1 (2026-07-01)
+
+- Fix: the `mothrag` console script now works. `mothrag = mothrag.cli.main:main` was declared but `mothrag/cli/main.py` did not ship in 0.6.0, so `mothrag --help` crashed with `ModuleNotFoundError`. Ships a real CLI: `mothrag query` (answer a question over `--text` / `--docs` inputs, with `--json`, `--embedder`, `--top-k`, `--production`), `mothrag smoke` (forwards to `mothrag-smoke`), and `mothrag version` / `--version`.
+- The no-key (or key-set-but-missing-`[openai]`-extra) reader fallback is now LOUD: `mothrag query` prints a stderr NOTE that the answer is the echoed retrieved chunk, NOT LLM-generated, with the exact install/env fix — instead of silently returning chunk-echo.
+- CI: added a GitHub Actions release-gate that builds the wheel, installs it in a clean venv and runs the documented commands, plus an entry-point completeness test and a version single-source-of-truth test, so a broken console script or version drift can no longer reach PyPI. Release publishes via PyPI Trusted Publishing (OIDC).
+
 ## 0.6.0 (2026-06-23)
 
 - Incremental `update` / `delete` on the high-level API: `MothRAG.update(doc_id, text)` supersedes a document in place and `MothRAG.delete(doc_id)` retracts it, each a single embedding pass over the changed document with no index rebuild and no retraining. New `MutableVectorStore` protocol; the default in-memory store implements `delete` / `delete_by_doc` / `upsert`. Clear errors are raised on append-only stores or non-dense retrieval.
