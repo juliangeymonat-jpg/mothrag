@@ -14,37 +14,39 @@ what the release acceptance gate runs against the built wheel)::
 
     python tests/test_entry_points.py
 """
+
 from __future__ import annotations
 
 import importlib
 from importlib.metadata import entry_points
 
+_DIST = "mothrag"
 
-def _mothrag_console_scripts():
-    eps = entry_points()
-    group = (eps.select(group="console_scripts")
-             if hasattr(eps, "select") else eps.get("console_scripts", []))
-    # Only the scripts this project owns (target lives in the mothrag package).
-    return [ep for ep in group if ep.value.split(":")[0].split(".")[0] == "mothrag"]
+
+def _console_scripts():
+    # requires-python >= 3.10, where entry_points() supports keyword selection.
+    return [
+        ep
+        for ep in entry_points(group="console_scripts")
+        if ep.value.split(":")[0].split(".")[0] == _DIST
+    ]
 
 
 def check_console_scripts() -> list[str]:
     """Return failure messages; empty list means every script resolves."""
     failures: list[str] = []
-    scripts = _mothrag_console_scripts()
+    scripts = _console_scripts()
     if not scripts:
-        return ["no mothrag console_scripts found in the installed distribution"]
+        return [f"no {_DIST} console_scripts found in the installed distribution"]
     for ep in scripts:
         module_path, _, attr = ep.value.partition(":")
         try:
             mod = importlib.import_module(module_path)
         except Exception as exc:  # noqa: BLE001 — any import failure is a real defect
-            failures.append(f"{ep.name} = {ep.value}: import failed: "
-                            f"{type(exc).__name__}: {exc}")
+            failures.append(f"{ep.name} = {ep.value}: import failed: {type(exc).__name__}: {exc}")
             continue
         if attr and not hasattr(mod, attr.split(".")[0]):
-            failures.append(f"{ep.name} = {ep.value}: {module_path} "
-                            f"has no attribute {attr!r}")
+            failures.append(f"{ep.name} = {ep.value}: {module_path} has no attribute {attr!r}")
     return failures
 
 
@@ -62,5 +64,5 @@ if __name__ == "__main__":
         for f in fails:
             print("  -", f)
         sys.exit(1)
-    print(f"OK: {len(_mothrag_console_scripts())} mothrag console script(s) resolve")
+    print(f"OK: {len(_console_scripts())} {_DIST} console script(s) resolve")
     sys.exit(0)
