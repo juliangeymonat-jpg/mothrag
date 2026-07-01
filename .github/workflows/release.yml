@@ -1,0 +1,58 @@
+name: release
+
+# Tag-triggered release. The wheel is built and the documented commands are
+# run against it in a clean venv BEFORE publish, so a broken entry point or
+# quickstart fails the release instead of shipping (the 0.6.0 CLI defect).
+#
+# Publish uses PyPI Trusted Publishing (OIDC) — no stored token. It requires a
+# one-time registration on PyPI: project -> Manage -> Publishing -> add a
+# GitHub Actions publisher (owner: juliangeymonat-jpg, repo: mothrag,
+# workflow: release.yml, environment: pypi). Until that exists, `build-verify`
+# still runs; only the `publish` job needs the trusted publisher.
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build-verify:
+    name: build + released-artifact acceptance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --upgrade pip build
+      - name: Build sdist + wheel
+        run: python -m build
+      - name: Install the built wheel in a CLEAN venv and run the documented commands
+        run: |
+          set -euo pipefail
+          python -m venv /tmp/rel
+          /tmp/rel/bin/pip install --upgrade pip
+          /tmp/rel/bin/pip install dist/*.whl
+          /tmp/rel/bin/mothrag --version
+          /tmp/rel/bin/mothrag --help
+          /tmp/rel/bin/mothrag query "Where is the Eiffel Tower?" \
+            --text "The Eiffel Tower is a wrought-iron lattice tower in Paris, France." \
+            --embedder hash
+          /tmp/rel/bin/python tests/test_entry_points.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: publish to PyPI (trusted publishing)
+    needs: build-verify
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
