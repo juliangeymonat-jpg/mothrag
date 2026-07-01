@@ -110,6 +110,27 @@ print(result.confidence)     # arbitration confidence
 
 API keys via environment (see `.env.example`): `GROQ_API_KEY` (reader), `GEMINI_API_KEY` (embedder + grounding judge), `ANTHROPIC_API_KEY` (premium retrieval judge; optional — the economy tier uses Gemini).
 
+### From the terminal
+
+The same pipeline, no Python file needed (v0.6.1+):
+
+```bash
+pip install 'mothrag[openai]'
+export GROQ_API_KEY=...   # free-tier key: https://console.groq.com/keys
+
+mothrag query "In which country is the Eiffel Tower?" \
+  --text "Paris is the capital of France." \
+  --text "The Eiffel Tower is in Paris."
+
+mothrag query "What changed in Q3?" --docs ./reports/ --json
+```
+
+`--docs` takes files or directories (repeatable), `--json` emits a machine-readable
+result with the winning arm and a `reader_mode` field. With no API key MothRAG
+still runs end-to-end on offline fallbacks, and says so loudly: the answer is
+the echoed top chunk, marked as such on stderr, never passed off as an LLM
+answer. `mothrag smoke -h` runs the HotpotQA-style eval.
+
 ### Keeping the index current
 
 When a fact changes, replace it in place; when it is retracted, drop it. Both are incremental: one embedding pass over the changed document, no graph rebuild and no retraining.
