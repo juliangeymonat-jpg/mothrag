@@ -1,0 +1,61 @@
+name: release
+
+# Tag-triggered release. Before anything publishes: the tag must match the
+# package version, the unit test suite must pass, and the built wheel must
+# survive the same released-artifact acceptance gate CI runs (via the shared
+# scripts/acceptance.sh, so the two gates cannot drift).
+#
+# Publish uses PyPI Trusted Publishing (OIDC), no stored token. One-time setup
+# on PyPI: project -> Manage -> Publishing -> add a GitHub Actions publisher
+# (owner: juliangeymonat-jpg, repo: mothrag, workflow: release.yml,
+# environment: pypi). Until then, only the `publish` job is blocked.
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build-verify:
+    name: build + released-artifact acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Check the tag matches the package version
+        run: |
+          VER=$(python -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")
+          if [ "v$VER" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match pyproject version v$VER"; exit 1
+          fi
+      - run: python -m pip install --upgrade pip build
+      - name: Unit tests (source)
+        run: |
+          pip install -e ".[dev,retrieval,gemini]"
+          pytest
+      - name: Build sdist + wheel
+        run: python -m build
+      - name: Install the built wheel in a clean venv and run the documented commands
+        run: bash scripts/acceptance.sh /tmp/rel
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: publish to PyPI (trusted publishing)
+    needs: build-verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
