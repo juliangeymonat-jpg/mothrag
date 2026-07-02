@@ -128,18 +128,21 @@ class _HashEmbedder:
     Used as a fallback when neither Gemini nor sentence-transformers is
     installed. NOT for production use; produces 256-dim sparse vectors
     via word-hash modulo and counts. Useful for smoke tests and offline
-    development.
+    development. Buckets via crc32, not ``hash()``: str hash is
+    siphash-salted per process, which would make runs non-reproducible and
+    silently break any index persisted across processes.
     """
     DIM = 256
 
     def embed_batch(self, texts: Sequence[str]) -> list[list[float]]:
         import math
+        import zlib
         out: list[list[float]] = []
         for text in texts:
             vec = [0.0] * self.DIM
             tokens = re.findall(r"\w+", text.lower())
             for tok in tokens:
-                vec[hash(tok) % self.DIM] += 1.0
+                vec[zlib.crc32(tok.encode("utf-8")) % self.DIM] += 1.0
             # L2 normalize
             norm = math.sqrt(sum(v * v for v in vec)) or 1.0
             out.append([v / norm for v in vec])
@@ -439,7 +442,11 @@ def _resolve_embedder_spec(spec: str) -> Embedder:
 
 
 def _resolve_default_reader() -> Reader:
-    """Try Llama Together / Groq → echo fallback."""
+    """Try Llama Together / Groq → echo fallback.
+
+    Both echo fallbacks are LOUD and name their own fix: a silent fallback
+    here means a user reads a chunk-echo as an LLM answer (the 0.6.0 trap).
+    """
     api_key = os.environ.get("TOGETHER_API_KEY") or os.environ.get("GROQ_API_KEY")
     if api_key:
         try:
@@ -449,8 +456,17 @@ def _resolve_default_reader() -> Reader:
             logger.info("MothRag auto-default reader: %s @ %s", model, base_url)
             return OpenAICompatibleReader(model=model, base_url=base_url, api_key=api_key)
         except ImportError:
-            pass
-    logger.warning("MothRag auto-default reader: echo fallback (set TOGETHER_API_KEY or GROQ_API_KEY for production)")
+            key_name = "TOGETHER_API_KEY" if os.environ.get("TOGETHER_API_KEY") else "GROQ_API_KEY"
+            logger.warning(
+                "MothRag: %s is set but the reader SDK is not installed, so answers "
+                "will be the echoed top chunk (NO LLM call). Fix: pip install 'mothrag[openai]'",
+                key_name,
+            )
+            return _EchoReader()
+    logger.warning(
+        "MothRag auto-default reader: echo fallback -- answers are the echoed top "
+        "chunk, NOT LLM-generated (set TOGETHER_API_KEY or GROQ_API_KEY and "
+        "pip install 'mothrag[openai]' for production)")
     return _EchoReader()
 
 
