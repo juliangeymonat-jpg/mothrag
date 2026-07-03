@@ -616,7 +616,7 @@ class MothRAG:
               KB-audit / gap-discovery deployments.
         retrieval
             String dispatcher for the retrieval base. ``"dense"`` (default)
-            preserves v0.5.0 alpha behaviour: the configured ``embedder`` +
+            preserves the original dense behaviour: the configured ``embedder`` +
             ``vector_db`` pair, wrapped by
             :class:`mothrag.core.retrieval.DenseRetriever`. ``"hybrid_graph"``
             constructs a :class:`mothrag.core.retrieval.HybridGraphRetriever`

@@ -1,6 +1,6 @@
 # Document loaders
 
-The `mothrag.loaders` package converts files to `Document` objects via `auto_load`. v0.5.0 ships two loaders.
+The `mothrag.loaders` package converts files to `Document` objects via `auto_load`. Two loaders ship today.
 
 ## `auto_load(source)`
 
@@ -41,6 +41,6 @@ docs = load_json("corpus.jsonl")
 
 ## Deferred formats
 
-PDF (`.pdf`), HTML (`.html`/`.htm`), DOCX (`.docx`) raise `NotImplementedError` with an explicit message pointing at the v0.5.0 workaround: pre-extract text externally and pass strings via `MothRAG.from_documents([...])`.
+PDF (`.pdf`), HTML (`.html`/`.htm`), DOCX (`.docx`) raise `NotImplementedError` with an explicit message pointing at the workaround: pre-extract text externally and pass strings via `MothRAG.from_documents([...])`.
 
-Native support planned for v0.5.1.
+Native support is planned for a future release.

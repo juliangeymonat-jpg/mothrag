@@ -1,6 +1,6 @@
 # Hybrid graph retrieval (HippoRAG2 backend)
 
-MothRag's retrieval base is pluggable via the `retrieval=` keyword on the [`MothRAG`](api.md) constructor. The default `retrieval="dense"` preserves the v0.5.0 alpha behaviour (embedder + in-memory cosine index). The `retrieval="hybrid_graph"` option swaps in the OSU-NLP-Group HippoRAG2 SDK ([github.com/OSU-NLP-Group/HippoRAG](https://github.com/OSU-NLP-Group/HippoRAG), Apache 2.0) for personalized-PageRank dense + graph fusion, while leaving the V3+bu / decompose / iter arms and arbitration logic untouched.
+MothRag's retrieval base is pluggable via the `retrieval=` keyword on the [`MothRAG`](api.md) constructor. The default `retrieval="dense"` preserves the original dense behaviour (embedder + in-memory cosine index). The `retrieval="hybrid_graph"` option swaps in the OSU-NLP-Group HippoRAG2 SDK ([github.com/OSU-NLP-Group/HippoRAG](https://github.com/OSU-NLP-Group/HippoRAG), Apache 2.0) for personalized-PageRank dense + graph fusion, while leaving the V3+bu / decompose / iter arms and arbitration logic untouched.
 
 ## Install
 
@@ -97,7 +97,7 @@ Comparison is against the B-mode dense baseline MothRag MQ T1 F1 (= 0.4298). Any
 
 ## Backward compatibility
 
-- `MothRAG()` with no `retrieval=` keyword defaults to `"dense"` and is byte-identical to v0.5.0 alpha.
+- `MothRAG()` with no `retrieval=` keyword defaults to `"dense"` and is byte-identical to the original dense pipeline.
 - Existing `vector_db=` kwarg still works; it backs the default `DenseRetriever`.
 - All other constructor keywords (`embedder`, `reader`, `production`, free-form `**config`) are untouched.
 

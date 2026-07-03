@@ -1,6 +1,6 @@
 # Multi-modal retrieval — dense + structured infobox
 
-`retrieval="dense_plus_infobox"` blends the v0.5.0 alpha dense
+`retrieval="dense_plus_infobox"` blends the default dense
 retriever with a structured `(subject, attribute, value)` triple index
 harvested from the same chunks at ingest time. For entity-attribute
 questions — "When was X born?", "Who is Y's spouse?", "What is the

@@ -2,12 +2,12 @@
 
 Thank you for considering a contribution. MothRag is a personal research and engineering project by Julian Geymonat, released under Apache 2.0 and developed in the open. The framework is **domain-agnostic by design**: contributed code, documentation, examples, and benchmarks should remain so.
 
-This guide covers the contribution surface that is most useful at the alpha stage: opening issues, adding adapters, and submitting pull requests.
+This guide covers the contribution surface that is most useful at this stage: opening issues, adding adapters, and submitting pull requests.
 
 ## Project status
 
-- **Current release**: v0.5.0 alpha (PyPI: `pip install mothrag`).
-- **Stability**: alpha — the public API surface (`mothrag.MothRAG`, the reader/embedder/vector-store adapters, and `mothrag.loaders`) may change between minor releases until v1.0.
+- **Current release**: the latest version on PyPI (`pip install mothrag`); see [CHANGELOG.md](CHANGELOG.md) for what shipped in it.
+- **Stability**: pre-1.0. The public API surface (`mothrag.MothRAG`, the reader/embedder/vector-store adapters, and `mothrag.loaders`) may change between minor releases until v1.0.
 - **Reproducibility**: the paper headline stack is preserved and tested under `tests/`; see `paper/REPRODUCE.md` for the end-to-end reproduction command and inputs.
 
 ## Before you start

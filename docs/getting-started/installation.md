@@ -69,7 +69,7 @@ This affects only the `--help` console rendering; the runtime path is unaffected
 
 ```python
 import mothrag
-print(mothrag.__version__)        # → "0.5.0"
+print(mothrag.__version__)        # → the installed version, e.g. "0.6.1"
 
 from mothrag import MothRAG
 rag = MothRAG.from_documents(["Hello world."])

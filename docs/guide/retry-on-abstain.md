@@ -98,7 +98,7 @@ The default priority order is **cheap-zero-LLM-first, expensive-LLM-last, termin
 | 2 | `arm_fallback` | 0 LLM | iter_abstain, h4_refuse, h12_refuse, empty_answer, cross_arm_disagree | Picks the highest-quality non-empty sibling arm output (preference: iter > dec > v3bu). |
 | 4 | `cross_arm_consensus` | 0 LLM | any signal, ≥2 non-empty arms | Embeds the arm answers, cosine-clusters them at `threshold=0.7`. If ≥2 arms cluster, returns the cluster majority. Otherwise returns None. |
 | 5 | `bottom_up_boost` | 0 LLM | gamma_refuse, iter_abstain, h4_refuse, empty_answer | Extracts entities from question + passages (NER if `[retrieval]` installed, naive Capitalised-NP regex otherwise). Re-retrieves with entity-augmented query. Re-runs iter arm. |
-| 6 | `l4b_anchor_retry` | 0 LLM | iter_abstain, gamma_refuse | Swaps the L4b temporal anchor from rank-1 to rank-2 and re-runs iter. *Wired but inactive on the v0.5.0 alpha pipeline; becomes live when the full iter pipeline lands in v0.5.1.* |
+| 6 | `l4b_anchor_retry` | 0 LLM | iter_abstain, gamma_refuse | Swaps the L4b temporal anchor from rank-1 to rank-2 and re-runs iter. *Wired but inactive on the current public pipeline; becomes live when the full iter pipeline lands in the public API.* |
 | 3 | `query_reformulation` | 1 LLM call | any signal | LAST RESORT before SoftFallback. Asks the reader to rewrite the question more precisely given passage excerpts. Re-runs v3bu on the rewrite. Guarded against infinite recursion via `RetryContext.escalation_depth`. |
 | 7 | `soft_fallback` | 0 LLM | always-final (loop mode) | Terminal guarantee. Picks the best non-empty arm output (iter > dec > v3bu), or echoes the original chosen, or returns a `[no answer recovered]` placeholder. |
 
@@ -106,7 +106,7 @@ The default priority order is **cheap-zero-LLM-first, expensive-LLM-last, termin
 
 Strategies dispatch on a string drawn from `mothrag.core.retry.protocol.ABSTENTION_SIGNALS`:
 
-| Signal | Source | Heuristic at v0.5.0 alpha |
+| Signal | Source | Heuristic in the current release |
 |---|---|---|
 | `gamma_refuse` | γ verifier flagged answer invalid | substring `γ`/`gamma`/`refuse` in `arbitrate_reason` |
 | `h4_refuse` | pre-registered H4 selective rule | substring `h4`/`refuse` |
@@ -115,7 +115,7 @@ Strategies dispatch on a string drawn from `mothrag.core.retry.protocol.ABSTENTI
 | `cross_arm_disagree` | arbiter could not pick a winner | `c7_info["disagreement"] is True` |
 | `empty_answer` | chosen is empty or uncertainty template | fall-through fallback |
 
-The full γ / H4 / H12 / L4b signal surface from `mothrag.core.selective_ensemble` and `mothrag.eval.iterative_pipeline` will be wired cleanly when the production iter pipeline ports to the public API in v0.5.1; the strategies are already coded against the post-v0.5.1 trigger names so no further refactor is needed at strategy level.
+The full γ / H4 / H12 / L4b signal surface from `mothrag.core.selective_ensemble` and `mothrag.eval.iterative_pipeline` will be wired cleanly when the production iter pipeline ports to the public API; the strategies are already coded against the final trigger names so no further refactor is needed at strategy level.
 
 ## Telemetry
 

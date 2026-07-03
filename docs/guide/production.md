@@ -1,12 +1,12 @@
 # Production deployment
 
-The v0.5.0 high-level API (`mothrag.MothRAG`) is a developer-friendly wrapper. The **paper-grade stack** — the four-arm PDD pool, bridge retrieval substrate + ChainFilter, γ-verifier, and faithfulness loop — runs through `scripts/route_prospective.py`.
+The high-level API (`mothrag.MothRAG`) is a developer-friendly wrapper. The **paper-grade stack** — the four-arm PDD pool, bridge retrieval substrate + ChainFilter, γ-verifier, and faithfulness loop — runs through `scripts/route_prospective.py`.
 
 ## Two entry points, same routing decision
 
 | Entry point | When to use | Interface |
 |---|---|---|
-| `mothrag.MothRAG` (v0.5.0+) | Developer Python API, custom corpora, async/batch | `from_documents → query` |
+| `mothrag.MothRAG` | Developer Python API, custom corpora, async/batch | `from_documents → query` |
 | `scripts/route_prospective.py` | Paper-grade evaluation, reproducible benchmarks, full safety stack | CLI |
 
 Both share the same `arm_subset()` classifier and the same deterministic arbitration.
@@ -33,8 +33,9 @@ Headline F1 (n=1000 per dataset): **HotpotQA 78.1 · 2WikiMultiHopQA 76.3 · MuS
 | Auto-chunking from raw text / strings | yes | no (expects a pre-built corpus) |
 | Custom embedder / reader plug-in | yes | partial (CLI flags) |
 | Async / batch query | yes | n/a (batch over a query file) |
-| Four-arm PDD pool | single-arm read in v0.5.0 | yes |
-| Bridge substrate + ChainFilter | not in v0.5.0 | yes |
-| γ-verifier + faithfulness loop | not in v0.5.0 | yes |
+| Multi-arm pool + deterministic arbitration | yes, behind `production=True` (default is a single-arm read) | yes |
+| PDD 4th arm (`iter_dup_a`) | opt-in (the pip pool defaults to the three byte-stable arms) | yes |
+| Bridge substrate + ChainFilter | no (an opt-in bridge *arm* exists via `use_bridge_arm`; the substrate is CLI-only) | yes |
+| γ-verifier + faithfulness loop | partial (γ signals feed the deterministic arbitration in production mode) | yes |
 
-**v0.5.x roadmap:** bring the full safety stack into the `MothRAG` class behind a `production=True` flag.
+**Shipped:** the multi-arm orchestration is available in the `MothRAG` class behind `production=True` (`mode="adaptive"` routing, or `mode="ensemble_arbitrate"`), and on the command line as `mothrag query --production`. The remaining paper-grade pieces (4-arm PDD as the default pool, bridge substrate + ChainFilter, the full γ-verifier + faithfulness loop) stay on the `scripts/route_prospective.py` path.

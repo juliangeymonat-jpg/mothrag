@@ -8,12 +8,17 @@
 
 # MothRag
 
+[![CI](https://github.com/juliangeymonat-jpg/mothrag/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/juliangeymonat-jpg/mothrag/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/mothrag)](https://pypi.org/project/mothrag/)
+[![Python](https://img.shields.io/pypi/pyversions/mothrag)](https://pypi.org/project/mothrag/)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+
 > **Deterministic, agentic-style multi-hop — research-SOTA parity without the graph you'd rebuild every day.**
 
 On commodity LLM APIs alone. No GPU, no fine-tuning, a proof tree per answer.
 
-**Author:** Julian Geymonat · **License:** Apache 2.0 · **Status:** v0.5.0a alpha
-📄 Paper: *(arXiv link pending)* · 🔗 Demo · 🌐 mothrag.com
+**Author:** Julian Geymonat · **License:** Apache 2.0
+📄 [Paper (Zenodo preprint)](https://doi.org/10.5281/zenodo.20668567) · 🔗 [Live demo](https://huggingface.co/spaces/JUBOX99/mothrag-demo) · 🌐 [mothrag.com](https://mothrag.com)
 
 ## What it's for
 
@@ -24,8 +29,7 @@ The systems that chase this kind of multi-hop accuracy lean on heavy indexing �
 MothRag does the reasoning as **query-time orchestration over a plain dense index**. An update is **embed + append** — one embedding call, no LLM extraction, no graph rebuild, no retraining. So it stays current on data that moves under it.
 
 → See it: a runnable [World Cup freshness demo](https://huggingface.co/spaces/JUBOX99/mothrag-demo) — the answer follows the standings as new
-results are appended, with no re-index. Sourced cost comparison vs GraphRAG / HippoRAG2 /
-RAPTOR / LightRAG in [`GRAPH_COMPARISON.md`](#).
+results are appended, with no re-index.
 
 ## Three things you get at once
 
