@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.6.2 (2026-07-03)
+
+Adoption and robustness release, from an adversarial review of the first-run surface.
+
+- **UTF-8 BOM handled**: the text and JSON loaders now read `utf-8-sig`, so a file saved by Windows Notepad or PowerShell's `Set-Content -Encoding utf8` (both prepend a BOM) no longer leaks a stray `﻿` into the answer or crashes the `.json` loader. Identical to `utf-8` when no BOM is present.
+- **`mothrag demo`**: a new subcommand that answers a sample multi-hop question over a bundled demo corpus (now shipped inside the wheel), so the first command after `pip install` returns a real result with no key and no local corpus.
+- **CLI robustness**: a loader failure (missing optional extra, unsupported extension, a bad file) now prints one clean error and exits 2 instead of dumping a raw traceback; pointing `--docs` at a directory of unsupported or empty files is a clear "nothing to search" error (exit 2) instead of a misleading empty success (exit 0); a NOTE flags the offline hash embedder (low retrieval quality), mirroring the existing reader NOTE; `--require-llm` exits 4 rather than silently answering with the echo fallback (for scripts/CI).
+- **Honest telemetry**: in the default (non-`--production`) path `arm_used` is now `"single"` (a single read ran) instead of an arm name that implied a multi-arm orchestration that did not happen. The router's would-route decision stays available (unchanged `arm_subset`, plus `metadata["routed_arm_subset"]`).
+- **Docs**: the loader docstrings no longer claim PDF/HTML are "deferred" (they are supported via the `[pdf]`/`[html]` extras and raise `ImportError` if absent); the README `--docs` example points at a path that exists after install.
+- **CI/release hardening**: least-privilege top-level `permissions: contents: read`, a per-tag `concurrency` guard, and `skip-existing` on the PyPI publish so a re-run of an already-published tag recovers instead of hard-failing on "file already exists".
+
 ## 0.6.1 (2026-07-01)
 
 - Fix: the `mothrag` console script now works. `mothrag = mothrag.cli.main:main` was declared but `mothrag/cli/main.py` did not ship in 0.6.0, so `mothrag --help` crashed with `ModuleNotFoundError`. Ships a real CLI: `mothrag query` (answer a question over `--text` / `--docs` inputs, with `--json`, `--embedder`, `--top-k`, `--production`), `mothrag smoke` (forwards everything, including `-h`, to `mothrag-smoke`), and `mothrag version` / `--version`.

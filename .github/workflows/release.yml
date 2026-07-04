@@ -14,6 +14,17 @@ on:
   push:
     tags: ["v*"]
 
+# Least privilege by default; the publish job escalates to id-token: write only.
+permissions:
+  contents: read
+
+# One release pipeline per tag at a time: a deleted-and-re-pushed tag (the
+# usual way to "fix" a release) can't race a still-running publish. Do NOT
+# cancel-in-progress -- cancelling mid-publish is riskier than serializing.
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build-verify:
     name: build + released-artifact acceptance
@@ -59,3 +70,7 @@ jobs:
           name: dist
           path: dist/
       - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          # A re-run on an already-published tag skips the existing distribution
+          # instead of hard-failing on "400 File already exists".
+          skip-existing: true

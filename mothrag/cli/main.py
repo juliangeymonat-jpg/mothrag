@@ -86,10 +86,63 @@ def _cmd_query(args: argparse.Namespace) -> int:
     if warning:
         print(f"NOTE: {warning}", file=sys.stderr)
 
-    for path in args.docs:
-        rag.ingest(path)
-    if args.text:
-        rag.ingest(list(args.text))
+    # --require-llm lets automation opt into strictness: fail loudly rather than
+    # silently answer with the echo fallback (which returns exit 0 like a real
+    # LLM success, so a scripted caller cannot otherwise tell them apart).
+    if getattr(args, "require_llm", False) and mode != "llm":
+        print(
+            "mothrag query: --require-llm is set but no LLM reader is active "
+            "(the echo fallback would run). Set a reader key (GROQ_API_KEY) and "
+            "install the SDK: pip install 'mothrag[openai]'.",
+            file=sys.stderr,
+        )
+        return 4
+
+    # The reader NOTE covers answer quality; retrieval quality has its own trap:
+    # with no embedding backend the library silently drops to the offline hash
+    # embedder, so a user could get real LLM answers over near-random retrieval.
+    from mothrag.core.api import _HashEmbedder
+
+    if isinstance(rag.embedder, _HashEmbedder):
+        print(
+            "NOTE: using the offline hash embedder (low retrieval quality, for "
+            "smoke tests only). For production retrieval set GEMINI_API_KEY and "
+            "pip install 'mothrag[prod]', or pass --embedder st for a local model.",
+            file=sys.stderr,
+        )
+
+    # Loader failures (missing optional extra, unsupported extension, a BOM/bad
+    # file) carry helpful messages but would otherwise escape as a raw traceback;
+    # surface them as a single clean CLI error, like the other guards above.
+    try:
+        for path in args.docs:
+            rag.ingest(path)
+        if args.text:
+            rag.ingest(list(args.text))
+    except (
+        ImportError,
+        ValueError,
+        NotImplementedError,
+        FileNotFoundError,
+        UnicodeError,
+        OSError,
+    ) as exc:
+        print(f"mothrag query: could not load documents: {exc}", file=sys.stderr)
+        return 2
+
+    # A directory of unsupported types (or only-empty files) is silently skipped
+    # during ingest, leaving an empty index that would answer "[no passages
+    # retrieved]" with exit 0, a misleading success. Turn it into a clear error.
+    if len(rag.retriever) == 0:
+        from mothrag.loaders import _EXT_DISPATCH
+
+        exts = ", ".join(sorted(_EXT_DISPATCH))
+        print(
+            "mothrag query: no searchable text was loaded (the files were empty "
+            f"or an unsupported type; nothing to search). Supported: {exts}.",
+            file=sys.stderr,
+        )
+        return 2
 
     query_kwargs: dict[str, Any] = {}
     if args.top_k is not None:
@@ -135,6 +188,43 @@ def _cmd_query(args: argparse.Namespace) -> int:
     return 3 if empty_llm_answer else 0
 
 
+def _sample_corpus_dir() -> Path:
+    """Absolute path to the demo corpus bundled inside the installed package."""
+    return Path(__file__).resolve().parent.parent / "data" / "sample_corpus"
+
+
+_DEMO_QUESTION = "Who was the Eiffel Tower named after, and in which country does it stand?"
+
+
+def _cmd_demo(args: argparse.Namespace) -> int:
+    corpus = _sample_corpus_dir()
+    if not corpus.is_dir():
+        print(
+            f"mothrag demo: bundled sample corpus not found at {corpus} (reinstall mothrag).",
+            file=sys.stderr,
+        )
+        return 2
+    question = args.question or _DEMO_QUESTION
+    print(f"mothrag demo: corpus = {corpus}", file=sys.stderr)
+    print(f'mothrag demo: question = "{question}"', file=sys.stderr)
+    print(
+        f'(try your own: mothrag query "<question>" --docs {corpus})',
+        file=sys.stderr,
+    )
+    # Reuse the full query path (reader/embedder NOTEs, error handling, exit codes).
+    delegated = argparse.Namespace(
+        question=question,
+        text=None,
+        docs=[str(corpus)],
+        top_k=None,
+        embedder=args.embedder,
+        production=False,
+        require_llm=False,
+        json=args.json,
+    )
+    return _cmd_query(delegated)
+
+
 def _cmd_version(_args: argparse.Namespace) -> int:
     print(_VERSION_STRING)
     return 0
@@ -150,7 +240,7 @@ def _build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument("--version", action="version", version=_VERSION_STRING)
-    sub = parser.add_subparsers(dest="command", metavar="{query,smoke,version}")
+    sub = parser.add_subparsers(dest="command", metavar="{query,demo,smoke,version}")
 
     q = sub.add_parser("query", help="Answer a question over supplied documents.")
     q.add_argument("question", help="The question to answer.")
@@ -180,8 +270,34 @@ def _build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Run the full multi-arm orchestration (needs a real reader).",
     )
+    q.add_argument(
+        "--require-llm",
+        action="store_true",
+        dest="require_llm",
+        help="Exit non-zero (4) instead of answering with the echo fallback "
+        "when no LLM reader is active (for scripts/CI).",
+    )
     q.add_argument("--json", action="store_true", help="Emit a JSON result.")
     q.set_defaults(func=_cmd_query)
+
+    d = sub.add_parser(
+        "demo",
+        help="Answer a sample multi-hop question over the bundled demo corpus.",
+    )
+    d.add_argument(
+        "question",
+        nargs="?",
+        default=None,
+        help="Optional question (default: a canned Eiffel Tower multi-hop query).",
+    )
+    d.add_argument(
+        "--embedder",
+        default=None,
+        metavar="SPEC",
+        help="Embedder spec (default: auto). Use 'st' for a local offline model.",
+    )
+    d.add_argument("--json", action="store_true", help="Emit a JSON result.")
+    d.set_defaults(func=_cmd_demo)
 
     v = sub.add_parser("version", help="Print the installed MothRAG version.")
     v.set_defaults(func=_cmd_version)

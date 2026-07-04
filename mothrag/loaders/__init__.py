@@ -3,11 +3,15 @@
 """Document loaders for MothRAG.
 
 The :func:`auto_load` dispatcher inspects a path (or list of paths) and
-routes to the appropriate per-format loader. PDF / HTML / DOCX loaders
-are intentionally deferred to future versions; v0.5.0 ships:
+routes to the appropriate per-format loader. Supported out of the box:
 
 - ``text``: ``.txt``, ``.md``, ``.markdown`` plain text
 - ``json``: ``.json`` / ``.jsonl`` structured records
+- ``pdf``: ``.pdf`` (needs ``pip install mothrag[pdf]``; ``ImportError`` if absent)
+- ``html``: ``.html`` / ``.htm`` (needs ``pip install mothrag[html]``)
+
+``.docx`` / ``.epub`` / ``.pptx`` are still deferred and raise
+``NotImplementedError`` with a pre-extract-and-pass-strings hint.
 
 Each loader returns a list of :class:`mothrag.core.api.Document`.
 """
@@ -53,7 +57,8 @@ def auto_load(source: str | Path | Iterable[str | Path]) -> list[Document]:
     - List of paths: concatenates results.
 
     Raises ``ValueError`` for unrecognized extensions; ``NotImplementedError``
-    with a helpful message for deferred formats (.pdf, .html, .docx).
+    for still-deferred formats (.docx, .epub, .pptx); and ``ImportError`` when
+    a supported optional format (.pdf, .html) is missing its extra.
     """
     if isinstance(source, (str, Path)):
         return _load_one(Path(source))

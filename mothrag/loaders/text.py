@@ -15,8 +15,14 @@ from pathlib import Path
 from mothrag.core.api import Document
 
 
-def load_text(path: str | Path, *, encoding: str = "utf-8") -> list[Document]:
-    """Load a single ``.txt`` / ``.md`` file as a Document."""
+def load_text(path: str | Path, *, encoding: str = "utf-8-sig") -> list[Document]:
+    """Load a single ``.txt`` / ``.md`` file as a Document.
+
+    Defaults to ``utf-8-sig`` so a UTF-8 BOM (what Windows Notepad and
+    ``Set-Content -Encoding utf8`` prepend) is stripped instead of leaking
+    a stray ``﻿`` into the document text; it is identical to ``utf-8``
+    when no BOM is present.
+    """
     p = Path(path)
     text = p.read_text(encoding=encoding, errors="replace")
     return [Document(

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mothrag"
-version = "0.6.1"
+version = "0.6.2"
 description = "MothRAG: adaptive multi-arm subset routing for multi-hop retrieval-augmented generation — high-level Python API with auto-defaults."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -96,6 +96,10 @@ mothrag-smoke = "mothrag.cli.smoke:main"
 [tool.setuptools.packages.find]
 include = ["mothrag*"]
 exclude = ["tests*", "examples*", "src*", "poc*", "research*", "spec*", "paper*", "benchmarks*", "docs*"]
+
+[tool.setuptools.package-data]
+# Ship the bundled demo corpus (`mothrag demo`) inside the wheel.
+mothrag = ["data/sample_corpus/*"]
 
 [tool.ruff]
 line-length = 100

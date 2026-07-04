@@ -958,16 +958,19 @@ class MothRAG:
         gold_doc_ids = kwargs.get("gold_doc_ids")
         retrieved = self.retriever.retrieve(question, top_k=top_k)
         passages = [c.text for c in retrieved]
+        # Single mode runs ONE read over the top-K passages; no arm executes.
+        # arm_subset still reports the router's would-route decision (the public,
+        # tested routing signal), but arm_used must say "single" rather than an
+        # arm name, so telemetry never implies a multi-arm run that did not happen.
         arm_subset_list: list[str] = []
-        arm_used = "default"
         if self.config.get("use_router", True):
             try:
                 from mothrag.core.query_type_classifier import arm_subset
                 arm_subset_list = arm_subset(question)
-                arm_used = arm_subset_list[0] if arm_subset_list else "default"
             except Exception as exc:  # noqa: BLE001
                 logger.debug("arm_subset routing skipped: %s", exc)
                 arm_subset_list = []
+        arm_used = "single"
         try:
             answer = self.reader.read(question, passages)
         except Exception as exc:  # noqa: BLE001
@@ -976,6 +979,7 @@ class MothRAG:
         meta = {
             "top_k": top_k, "n_passages": len(passages),
             "mode": "single", "retrieval": self.retrieval,
+            "routed_arm_subset": arm_subset_list,
         }
         _attach_recall_at_k(meta, retrieved, gold_doc_ids, top_k)
         return QueryResult(

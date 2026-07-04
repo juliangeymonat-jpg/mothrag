@@ -26,8 +26,12 @@ from mothrag.core.api import Document
 _TEXT_KEYS = ("text", "content", "body", "passage", "answer")
 
 
-def load_json(path: str | Path, *, encoding: str = "utf-8") -> list[Document]:
-    """Load a ``.json`` or ``.jsonl`` file as a list of Documents."""
+def load_json(path: str | Path, *, encoding: str = "utf-8-sig") -> list[Document]:
+    """Load a ``.json`` or ``.jsonl`` file as a list of Documents.
+
+    Defaults to ``utf-8-sig`` so a UTF-8 BOM does not make ``json.loads``
+    raise ``Unexpected UTF-8 BOM``; identical to ``utf-8`` when absent.
+    """
     p = Path(path)
     suf = p.suffix.lower()
     if suf == ".jsonl":

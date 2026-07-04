@@ -116,17 +116,24 @@ API keys via environment (see `.env.example`): `GROQ_API_KEY` (reader), `GEMINI_
 
 ### From the terminal
 
-The same pipeline, no Python file needed (v0.6.1+):
+The same pipeline, no Python file needed:
+
+```bash
+pip install mothrag
+
+# Instant multi-hop over a corpus that ships in the package (no key, no setup):
+mothrag demo
+
+# Your own docs (a file or directory, repeatable):
+mothrag query "What changed in Q3?" --docs ./your_notes/ --json
+```
+
+For real LLM answers instead of the offline echo fallback, add a free reader key:
 
 ```bash
 pip install 'mothrag[openai]'
 export GROQ_API_KEY=...   # free-tier key: https://console.groq.com/keys
-
-mothrag query "In which country is the Eiffel Tower?" \
-  --text "Paris is the capital of France." \
-  --text "The Eiffel Tower is in Paris."
-
-mothrag query "What changed in Q3?" --docs ./reports/ --json
+mothrag demo "Who was the Eiffel Tower named after, and in which country does it stand?"
 ```
 
 `--docs` takes files or directories (repeatable), `--json` emits a machine-readable

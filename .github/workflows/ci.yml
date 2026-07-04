@@ -5,6 +5,10 @@ on:
     branches: [main]
   pull_request:
 
+# CI only reads the repo and runs tests; no token write scope needed.
+permissions:
+  contents: read
+
 jobs:
   lint-test:
     name: lint + test (py${{ matrix.python-version }})
