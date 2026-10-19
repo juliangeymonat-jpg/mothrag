@@ -53,4 +53,4 @@ pip install "mothrag[prod]"        # full production stack (Gemini + Groq Llama 
 
 - [Quickstart](getting-started/quickstart.md) · [Installation](getting-started/installation.md) · [Concepts](getting-started/concepts.md)
 - [High-level API](guide/api.md) · [Loaders](guide/loaders.md) · [Production deployment](guide/production.md)
-- [The paper (Zenodo)](https://doi.org/10.5281/zenodo.20668567)
+- [The paper (Zenodo)](https://doi.org/10.5281/zenodo.20668566)

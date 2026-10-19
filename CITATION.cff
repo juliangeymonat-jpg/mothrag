@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "MOTHRAG: Training-Free Multi-Hop Question Answering at Research-SOTA Parity on Commodity LLM APIs"
+title: "MOTHRAG: Reaching the Accuracy Frontier of Multi-Hop Question Answering Without a GPU in the Loop"
 message: "If you use this software, please cite it as below."
 type: software
 authors:
@@ -11,14 +11,14 @@ version: "0.6.2"
 date-released: "2026-07-03"
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.20668567
-    description: "Zenodo preprint deposit of the paper"
+    value: 10.5281/zenodo.20668566
+    description: "Zenodo concept DOI of the paper (always resolves to the latest version)"
 preferred-citation:
   type: article
-  title: "MOTHRAG: Training-Free Multi-Hop Question Answering at Research-SOTA Parity on Commodity LLM APIs"
+  title: "MOTHRAG: Reaching the Accuracy Frontier of Multi-Hop Question Answering Without a GPU in the Loop"
   authors:
     - family-names: Geymonat
       given-names: Julian
   year: 2026
-  doi: 10.5281/zenodo.20668567
+  doi: 10.5281/zenodo.20668566
   notes: "Preprint deposited on Zenodo."

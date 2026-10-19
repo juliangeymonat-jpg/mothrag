@@ -18,7 +18,7 @@
 On commodity LLM APIs alone. No GPU, no fine-tuning, a proof tree per answer.
 
 **Author:** Julian Geymonat · **License:** Apache 2.0
-📄 [Paper (Zenodo preprint)](https://doi.org/10.5281/zenodo.20668567) · 🔗 [Live demo](https://huggingface.co/spaces/JUBOX99/mothrag-demo) · 🌐 [mothrag.com](https://mothrag.com)
+📄 [Paper (Zenodo preprint)](https://doi.org/10.5281/zenodo.20668566) · 🔗 [Live demo](https://huggingface.co/spaces/JUBOX99/mothrag-demo) · 🌐 [mothrag.com](https://mothrag.com)
 
 ## What it's for
 
@@ -176,11 +176,12 @@ See [`CITATION.cff`](CITATION.cff). Cite the Zenodo preprint:
 
 ```bibtex
 @misc{geymonat2026mothrag,
-  title  = {MOTHRAG: Training-Free Multi-Hop Question Answering at Research-SOTA Parity on Commodity LLM APIs},
+  title  = {MOTHRAG: Reaching the Accuracy Frontier of Multi-Hop Question Answering Without a GPU in the Loop},
   author = {Geymonat, Julian},
   year   = {2026},
-  doi    = {10.5281/zenodo.20668567},
-  url    = {https://doi.org/10.5281/zenodo.20668567}
+  publisher = {Zenodo},
+  doi    = {10.5281/zenodo.20668566},
+  url    = {https://doi.org/10.5281/zenodo.20668566}
 }
 ```
 
