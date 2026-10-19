@@ -83,4 +83,4 @@ rag = MothRAG.from_documents("./docs", reader=reader, top_k_chunks=15)
 - [Installation reference](installation.md)
 - [Core concepts](concepts.md): arms, classifier, arbitrate
 - [Production deployment](../guide/production.md) — reproducing the paper stack
-- [The paper (Zenodo)](https://doi.org/10.5281/zenodo.20668567)
+- [The paper (Zenodo)](https://doi.org/10.5281/zenodo.20668566)

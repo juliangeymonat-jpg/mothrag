@@ -53,4 +53,4 @@ Both use the same `arm_subset()` classifier and the same arbitration; they diffe
 
 - [Quickstart](quickstart.md) — end-to-end example.
 - [High-level API reference](../guide/api.md) — full method list.
-- [The paper (Zenodo)](https://doi.org/10.5281/zenodo.20668567) — full architecture, ablations, and results.
+- [The paper (Zenodo)](https://doi.org/10.5281/zenodo.20668566) — full architecture, ablations, and results.
